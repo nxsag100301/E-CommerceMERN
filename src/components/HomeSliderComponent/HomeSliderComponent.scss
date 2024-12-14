@@ -1,0 +1,30 @@
+.home-slider-container {
+    border-radius: 8px;
+
+    .slider-child {}
+
+    .slick-prev,
+    .slick-next {
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    .slick-prev {
+        left: 0; // Định vị mũi tên trái
+    }
+
+    .slick-next {
+        right: 0; // Định vị mũi tên phải
+    }
+
+    .slick-dots {
+        position       : absolute;
+        bottom         : 5px; // Khoảng cách từ dưới lên (điều chỉnh theo ý bạn)
+        z-index        : 1; // Đặt z-index cao hơn nội dung slider
+        width          : 100%; // Đặt ở giữa slider
+        display        : flex !important;
+        justify-content: center; // Căn giữa
+        color          : white;
+    }
+
+}

@@ -1,0 +1,76 @@
+.navbar-container {
+    width           : 180px;
+    display         : flex;
+    flex-direction  : column;
+    gap             : 10px;
+    box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
+    padding         : 20px;
+    background-color: white;
+    border-radius   : 5px;
+
+
+    .navbar-case-text {
+        border-bottom : 1px solid black;
+        padding-bottom: 10px;
+
+        .navbar-title {
+            font-size    : 16px;
+            margin-bottom: 7px;
+            font-weight  : 500;
+        }
+
+        .navbar-options {
+            font-size: 14px;
+            margin   : 10px 0;
+
+            span {
+                cursor: pointer;
+
+                &:hover {
+                    color: rgb(55, 190, 190);
+                }
+            }
+        }
+    }
+
+    .navbar-case-company {
+        border-bottom : 1px solid black;
+        padding-bottom: 10px;
+
+        .navbar-title {
+            font-size    : 16px;
+            margin-bottom: 7px;
+        }
+    }
+
+    .navbar-case-rate {
+        padding-bottom: 10px;
+
+        .navbar-title {
+            font-size    : 16px;
+            margin-bottom: 7px;
+        }
+
+        .navbar-rate {
+
+            .rate-child {
+                display: flex;
+                gap    : 10px;
+                margin : 3px 0;
+                cursor : pointer;
+
+                .rate {
+                    font-size: 12px;
+                }
+
+                .rate-description {
+                    font-size: 12px;
+                }
+            }
+
+
+
+        }
+    }
+
+}
