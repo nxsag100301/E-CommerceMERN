@@ -2,12 +2,15 @@ import React from 'react';
 import { Card } from 'antd';
 import './CardComponent.scss'
 import { StarOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 const CardComponent = () => {
+    const router = useNavigate()
     return (
         <div className='card-container'>
             <Card className='card'
-                bodyStyle={{ padding: "10px" }}
+                onClick={() => router(`/detail-product`)}
+                styles={{ body: { padding: "10px", }, }}
                 hoverable
                 style={{ width: 200 }}
                 cover={<img alt="example" src="https://salt.tikicdn.com/cache/750x750/ts/product/08/9b/82/596cbffa77acc3b8b8aa9f06e7b63c88.jpg.webp" />}
@@ -25,7 +28,7 @@ const CardComponent = () => {
                 </div>
             </Card>
             <Card className='card'
-                bodyStyle={{ padding: "10px" }}
+                styles={{ body: { padding: "10px", }, }}
                 hoverable
                 style={{ width: 200 }}
                 cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
@@ -43,7 +46,7 @@ const CardComponent = () => {
                 </div>
             </Card>
             <Card className='card'
-                bodyStyle={{ padding: "10px" }}
+                styles={{ body: { padding: "10px", }, }}
                 hoverable
                 style={{ width: 200 }}
                 cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
@@ -61,7 +64,7 @@ const CardComponent = () => {
                 </div>
             </Card>
             <Card className='card'
-                bodyStyle={{ padding: "10px" }}
+                styles={{ body: { padding: "10px", }, }}
                 hoverable
                 style={{ width: 200 }}
                 cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
@@ -79,7 +82,7 @@ const CardComponent = () => {
                 </div>
             </Card>
             <Card className='card'
-                bodyStyle={{ padding: "10px" }}
+                styles={{ body: { padding: "10px", }, }}
                 hoverable
                 style={{ width: 200 }}
                 cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
@@ -97,7 +100,7 @@ const CardComponent = () => {
                 </div>
             </Card>
             <Card className='card'
-                bodyStyle={{ padding: "10px" }}
+                styles={{ body: { padding: "10px", }, }}
                 hoverable
                 style={{ width: 200 }}
                 cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
@@ -115,7 +118,7 @@ const CardComponent = () => {
                 </div>
             </Card>
             <Card className='card'
-                bodyStyle={{ padding: "10px" }}
+                styles={{ body: { padding: "10px", }, }}
                 hoverable
                 style={{ width: 200 }}
                 cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
@@ -133,7 +136,7 @@ const CardComponent = () => {
                 </div>
             </Card>
             <Card className='card'
-                bodyStyle={{ padding: "10px" }}
+                styles={{ body: { padding: "10px", }, }}
                 hoverable
                 style={{ width: 200 }}
                 cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}

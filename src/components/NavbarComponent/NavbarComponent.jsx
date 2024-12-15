@@ -1,6 +1,7 @@
 import React from 'react';
 import './NavbarComponent.scss'
 import { Checkbox, Rate } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 
 const onChange = (checkedValues) => {
@@ -8,6 +9,7 @@ const onChange = (checkedValues) => {
 };
 
 const NavbarComponent = () => {
+    const router = useNavigate()
     const renderContent = (type, options) => {
         switch (type) {
             case 'text':
@@ -19,7 +21,7 @@ const NavbarComponent = () => {
                         {options?.length > 0 && options.map((item, index) => {
                             return (
                                 <div key={`navbaroption${index}`} className='navbar-options'>
-                                    <span>
+                                    <span onClick={() => router(`/${item}`)}>
                                         {item}
                                     </span>
                                 </div>
@@ -59,8 +61,8 @@ const NavbarComponent = () => {
                         <div className='navbar-rate'>
                             {options?.length > 0 && options.reverse().map((item, index) => {
                                 return (
-                                    <div className='rate-child'>
-                                        <Rate className='rate' key={`navbarrate${index}`} disabled defaultValue={item} />
+                                    <div key={`navbarrate${index}`} className='rate-child'>
+                                        <Rate className='rate' disabled defaultValue={item} />
                                         <div className='rate-description'>từ {item} sao</div>
                                     </div>
                                 )

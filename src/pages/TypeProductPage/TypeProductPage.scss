@@ -1,0 +1,25 @@
+.type-product-container1 {
+    padding         : 20px 100px;
+    display         : flex;
+    background-color: #efefef;
+
+    .product-navbar-left {
+        width   : 20%;
+        position: sticky;
+        top     : 120px;
+        height  : 100vh;
+    }
+
+    .list-product-right {
+        border-radius   : 5px;
+        background-color: white;
+        width           : 80%;
+        box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
+        padding         : 10px 29px;
+
+        .button-more {
+            text-align: center;
+            margin-top: 10px;
+        }
+    }
+}

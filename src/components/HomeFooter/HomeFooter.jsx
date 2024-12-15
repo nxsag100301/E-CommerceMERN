@@ -1,6 +1,7 @@
 import React from 'react';
 import './HomeFooter.scss'
-import { FaFacebook, FaGithub, FaGoogle, FaPhoneAlt } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaPhoneAlt } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { IoMdHome, IoIosMail, IoMdSearch } from "react-icons/io";
 
 const HomeFooter = () => {
@@ -21,9 +22,15 @@ const HomeFooter = () => {
                             Thêm, xóa, sửa sản phẩm, người dùng, thanh toán Paypal
                         </div>
                         <div className='social'>
-                            <div className='icon'><FaFacebook /></div>
-                            <div className='icon'><FaGithub /></div>
-                            <div className='icon'><FaGoogle /></div>
+                            <div className='icon' style={{ color: "#0067ff" }} onClick={() => window.open("https://www.facebook.com/nxsag/", "_blank")}>
+                                <FaFacebook />
+                            </div>
+                            <div className='icon' onClick={() => window.open("https://github.com/nxsag100301", "_blank")}>
+                                <FaGithub />
+                            </div>
+                            <div className='icon' onClick={() => window.open("https://www.google.com.vn/?hl=vi", "_blank")}>
+                                <FcGoogle />
+                            </div>
                         </div>
                     </div>
                     <div className='content-center'>
@@ -98,7 +105,7 @@ const HomeFooter = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
             <div className='footer-bot'>
                 © {new Date().getFullYear()} Created by Nxsag
             </div>

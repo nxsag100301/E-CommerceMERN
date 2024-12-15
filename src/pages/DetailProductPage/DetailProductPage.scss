@@ -1,0 +1,248 @@
+.detail-product-container {
+    height          : 2000px;
+    padding         : 0 100px;
+    background-color: #efefef;
+
+    .detail-content-top {
+        padding: 20px 0;
+        height : 550px;
+        display: flex;
+        gap    : 30px;
+
+        .detail-product-image {
+            box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
+            padding         : 20px;
+            background-color: white;
+            border-radius   : 7px;
+            width           : 40%;
+            background-image: url('https://salt.tikicdn.com/cache/750x750/ts/product/08/9b/82/596cbffa77acc3b8b8aa9f06e7b63c88.jpg.webp');
+            background-size : contain;
+        }
+
+        .detail-product-info {
+            width           : 60%;
+            box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
+            padding         : 20px;
+            background-color: white;
+            border-radius   : 7px;
+
+            .detail-product-logo {
+                display    : flex;
+                gap        : 5px;
+                align-items: center;
+
+                img {
+                    height   : 20px;
+                    min-width: 89px;
+                }
+
+                .company-1 {
+                    margin-left: 5px;
+                    position   : relative;
+                    bottom     : 1px;
+                }
+
+                .company-2 {
+                    position: relative;
+                    bottom  : 1px;
+                    color   : #0b74e5;
+                    cursor  : pointer;
+                }
+
+                span {
+                    font-size: 14px;
+                }
+            }
+
+            .detail-product-title {
+                margin     : 10px 0;
+                font-size  : 21px;
+                font-weight: 500;
+            }
+
+            .detail-product-rate {
+                display    : flex;
+                align-items: center;
+                gap        : 5px;
+                font-size  : 14px;
+
+                .icon {
+                    font-size: 13px;
+                    position : relative;
+                    top      : 1px;
+                }
+
+                .border {
+                    border-left  : 1px solid #808089;
+                    margin-left  : 10px;
+                    margin-top   : 3px;
+                    margin-bottom: 3px;
+                    height       : 15px;
+                }
+
+                .selled {
+                    color: #808089;
+                }
+            }
+
+            .detail-product-price {
+                margin     : 10px 0;
+                font-size  : 25px;
+                font-weight: 500;
+                color      : red;
+            }
+
+            .product-quantity {
+                user-select: none;
+
+                .title {
+                    margin-bottom: 5px;
+                    font-weight  : 500;
+                    font-size    : 14px;
+                }
+
+                .button-p-m {
+                    display      : flex;
+                    margin-bottom: 10px;
+                    gap          : 4px;
+
+                    .btn-plus {
+                        border         : 2px solid #0b74e5;
+                        width          : 23px;
+                        height         : 23px;
+                        display        : flex;
+                        align-items    : center;
+                        justify-content: center;
+                        cursor         : pointer;
+                        border-radius  : 3px;
+
+                        .icon {
+                            font-size: 10px;
+                            color    : #0b74e5;
+                        }
+
+                    }
+
+                    .count {
+                        border         : 2px solid #0b74e5;
+                        border-radius  : 3px;
+                        min-width      : 33px;
+                        height         : 23px;
+                        display        : flex;
+                        align-items    : center;
+                        justify-content: center;
+                        color          : #0b74e5;
+                    }
+
+                    .btn-minus {
+                        border         : 2px solid #0b74e5;
+                        width          : 23px;
+                        height         : 23px;
+                        display        : flex;
+                        align-items    : center;
+                        justify-content: center;
+                        cursor         : pointer;
+                        border-radius  : 3px;
+
+                        .icon {
+                            font-size: 10px;
+                            color    : #0b74e5;
+                        }
+
+                        &.disabled {
+                            pointer-events: none;
+                            opacity       : 0.5;
+                            cursor        : not-allowed;
+                        }
+
+                    }
+
+                    .border {}
+
+                    .add-to-cart {
+                        margin-left: 20px;
+
+                        .icon {
+                            font-size: 27px;
+                            color    : #0b74e5;
+                            cursor   : pointer;
+
+                            &:hover {
+                                opacity: 0.8;
+                            }
+
+                            &:active {
+                                transform: scale(0.9); // Thu nhỏ 10% khi click
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            .detail-product-voucher {
+                .voucher-logo {
+                    img {
+                        height: 22px;
+                        width : 75px;
+                    }
+                }
+
+                .voucher-description {
+
+                    .voucher-title {
+                        color : #808089;
+                        margin: 5px 0;
+                    }
+
+                    .voucher-detail {
+                        display    : flex;
+                        align-items: center;
+                        font-size  : 14px;
+
+                        .icon {
+                            margin-right: 10px;
+                            position    : relative;
+                            top         : 2px;
+
+                            img {
+                                width : 18px;
+                                height: 18px;
+                            }
+                        }
+
+                        .discount {
+                            margin-right: 5px;
+                            font-weight : 500;
+                        }
+
+                        .dis-from {
+                            color: #808089;
+                        }
+                    }
+                }
+
+            }
+
+            .buy-product-button {
+                margin-top: 30px;
+                display   : flex;
+                gap       : 20px;
+            }
+        }
+    }
+
+    .detail-content-center {
+        box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
+        padding         : 20px;
+        background-color: white;
+        border-radius   : 7px;
+    }
+
+    .detail-content-bot {
+        box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
+        padding         : 20px;
+        background-color: white;
+        border-radius   : 7px;
+    }
+}

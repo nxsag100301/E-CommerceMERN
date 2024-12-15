@@ -5,11 +5,10 @@
     padding-top     : 20px;
 
     .navbar-left {
-        width     : 20%;
-        position  : sticky;
-        top       : 120px;
-        height    : 100vh;
-        overflow-y: auto;
+        width   : 20%;
+        position: sticky;
+        top     : 120px;
+        height  : 100vh;
     }
 
     .homepage-content-right {
@@ -33,7 +32,7 @@
         .button-more {
             display        : flex;
             justify-content: center;
-            margin-top     : 20px;
+            margin         : 20px 0;
         }
     }
 

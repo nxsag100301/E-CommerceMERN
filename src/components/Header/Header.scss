@@ -95,7 +95,7 @@
             gap       : 15px;
             color     : #a5a4ab;
             font-size : 14px;
-            margin-top: 5px;
+            margin-top: 10px;
             cursor    : pointer;
         }
     }
@@ -172,6 +172,8 @@
         }
 
         .content-bottom {
+            margin-top: 5px;
+
             .text {
                 display       : flex;
                 flex-direction: row;
