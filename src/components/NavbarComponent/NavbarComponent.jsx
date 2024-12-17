@@ -9,7 +9,7 @@ const onChange = (checkedValues) => {
 };
 
 const NavbarComponent = () => {
-    const router = useNavigate()
+    const navigate = useNavigate()
     const renderContent = (type, options) => {
         switch (type) {
             case 'text':
@@ -21,7 +21,7 @@ const NavbarComponent = () => {
                         {options?.length > 0 && options.map((item, index) => {
                             return (
                                 <div key={`navbaroption${index}`} className='navbar-options'>
-                                    <span onClick={() => router(`/${item}`)}>
+                                    <span onClick={() => navigate(`/${item}`)}>
                                         {item}
                                     </span>
                                 </div>

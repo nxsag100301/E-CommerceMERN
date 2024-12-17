@@ -5,11 +5,11 @@ import { StarOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
 const CardComponent = () => {
-    const router = useNavigate()
+    const navigate = useNavigate()
     return (
         <div className='card-container'>
             <Card className='card'
-                onClick={() => router(`/detail-product`)}
+                onClick={() => navigate(`/detail-product`)}
                 styles={{ body: { padding: "10px", }, }}
                 hoverable
                 style={{ width: 200 }}

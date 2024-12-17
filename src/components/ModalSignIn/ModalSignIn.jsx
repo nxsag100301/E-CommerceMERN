@@ -2,12 +2,22 @@ import React, { useState } from 'react';
 import { Modal, Button, Form, Input } from 'antd';
 import './ModalSignIn.scss'
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { userInfo } from '../../redux/slices/userSlice.js';
+import { userLoginServiceRedux } from '../../redux/action/userAction.js';
+import { userSignUpService } from '../../utils/userApi.js';
+
+
 
 const ModalSignIn = (props) => {
 
     const [caseSignUpSignIn, setCaseSignUpSignIn] = useState('signin')
     const { isShowModal, setIsShowModal } = props
     const [form] = Form.useForm();
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    
 
     const handleCloseModal = () => {
         setIsShowModal(false)
@@ -22,7 +32,7 @@ const ModalSignIn = (props) => {
             );
     };
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
         const { email, password, confirmPassword } = values
         const emailIsValid = validateEmail(email)
         if (!emailIsValid) {
@@ -30,14 +40,32 @@ const ModalSignIn = (props) => {
             return
         }
         if (caseSignUpSignIn === 'signin') {
-            console.log('Sign In:', values);
+            let res = await userLoginServiceRedux(email, password)
+            if(res){
+                dispatch(userInfo(res))
+                setIsShowModal(false)
+                navigate('/')
+            }
         }
         else if (caseSignUpSignIn === 'signup') {
             if (password !== confirmPassword) {
                 toast.error("Mật khẩu không khớp!")
                 return
             }
-            console.log('Sign Up:', values);
+            let res = await userSignUpService({
+                email,
+                password,
+                confirmPassword
+            })
+            console.log('res:', res);
+            if(res?.errCode === 0){
+                toast.success('Đăng ký thành công')
+                setCaseSignUpSignIn("signin")
+                form.resetFields();
+            }
+            else(
+                toast.error(res?.message)
+            )
         }
     };
 

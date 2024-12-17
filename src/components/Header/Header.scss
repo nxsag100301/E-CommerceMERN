@@ -141,10 +141,18 @@
                 .icon {
                     font-size: 25px;
                     color    : #a5a4ab;
+
+                    &.logged {
+                        color: #0067ff;
+                    }
                 }
 
                 &:hover {
                     background-color: #bdcee4;
+                }
+
+                &.logged {
+                    color: #0067ff;
                 }
             }
 
