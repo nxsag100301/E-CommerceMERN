@@ -1,0 +1,33 @@
+.user-infor {
+    display        : flex;
+    gap            : 10px;
+    align-items    : center;
+    height         : 37px;
+    flex-wrap      : nowrap;
+    cursor         : pointer;
+    justify-content: center;
+    min-width      : 120px;
+    border-radius  : 8px;
+
+    &:hover {
+        background-color: #bdcee4;
+    }
+
+    .avatar {
+        position: relative;
+        top     : 8px;
+
+        img {
+            border       : 2px solid #0067ff;
+            height       : 27px;
+            width        : 27px;
+            object-fit   : cover;
+            border-radius: 50%;
+        }
+    }
+
+    .account {
+        font-size: 16px;
+        color    : #0067ff;
+    }
+}

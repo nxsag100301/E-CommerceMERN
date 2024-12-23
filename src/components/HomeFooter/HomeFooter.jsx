@@ -14,7 +14,7 @@ const HomeFooter = () => {
                             About project
                         </div>
                         <div className='text2'>
-                            Công nghệ: ReactJS, Redux, NodeJS(v20.14.0), MongoDB, RESTful API,
+                            Công nghệ: ReactJS, Redux, NodeJS(v20.14.0), Jwt, MongoDB, RESTful API,
                             Ant design
                         </div>
                         <div className='text2'>

@@ -1,12 +1,14 @@
 import React from 'react';
 import './TypeProduct.scss'
+import { useNavigate } from 'react-router-dom';
 
 const TypeProduct = (props) => {
+    const navigate = useNavigate()
     const { name } = props
     return (
-        <div className='type-product-container'>
+        <span className='type-product-container' onClick={() => navigate(`/product/${name}`)}>
             {name}
-        </div>
+        </span>
     );
 };
 

@@ -7,11 +7,13 @@ import { MdAccountCircle } from "react-icons/md";
 import { GiPositionMarker } from "react-icons/gi";
 import TypeProduct from '../TypeProduct/TypeProduct';
 import { useNavigate } from 'react-router-dom';
-import { Badge } from 'antd';
+import { Badge, message } from 'antd';
 import ModalSignIn from '../ModalSignIn/ModalSignIn';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dropdown } from 'antd';
 import { logout } from '../../redux/slices/userSlice';
+import { jwtDecode } from "jwt-decode";
+
 
 
 const Header = ({ style }) => {
@@ -19,6 +21,25 @@ const Header = ({ style }) => {
     const arr = ['TV', 'Tủ lạnh', 'Laptop', 'Điện thoại', 'Quần áo']
     const navigate = useNavigate()
     const user = useSelector((state) => state.user);
+    const access_token = localStorage.getItem('access_token')
+    let isAdmin = ''
+    let userId = ''
+    if (access_token) {
+        const decoded = jwtDecode(access_token);
+        if (!decoded) {
+            isAdmin = ''
+            userId = ''
+        }
+        else {
+            isAdmin = decoded?.payload?.isAdmin
+            userId = decoded?.payload?.id
+        }
+    }
+    else {
+        userId = ''
+        isAdmin = ''
+    }
+
     const dispatch = useDispatch()
 
     const handleSignIn = () => {
@@ -30,35 +51,53 @@ const Header = ({ style }) => {
     const handleLogOut = () => {
         localStorage.clear();
         dispatch(logout())
+        navigate('/')
+        message.info("Đăng xuất thành công!")
+    }
+
+    const handleIsAdminOrIsUser = async () => {
+        if (!isAdmin) {
+            console.log('Trung tâm hỗ trợ')
+        }
+        else {
+            navigate('/system/admin')
+        }
+    }
+
+    const handleViewProfileUser = async () => {
+        navigate('/profile-user')
     }
 
     const items = [
         {
             key: '1',
             label: (
-                <span>Thông tin tài khoản</span>
+                <div onClick={() => handleViewProfileUser()}>Thông tin tài khoản</div>
             ),
         },
         {
             key: '2',
             label: (
-                <span>Đơn hàng của tôi</span>
+                <div>Đơn hàng của tôi</div>
             ),
         },
         {
             key: '3',
             label: (
-                <span >Trung tâm hỗ trợ</span>
+                <div onClick={() => handleIsAdminOrIsUser()}>
+                    {!isAdmin ? "Trung tâm hỗ trợ" : "Trang quản trị"}
+                </div>
             ),
         },
         {
             key: '4',
             danger: true,
             label: (
-                <span onClick={() => handleLogOut()} >Đăng xuất</span>
+                <div onClick={() => handleLogOut()} >Đăng xuất</div>
             )
         },
     ];
+
 
     return (
         <>
@@ -98,13 +137,20 @@ const Header = ({ style }) => {
                             <RiHome5Fill className='icon' /> Trang chủ
                         </div>
                         {!user.isLoggedIn ?
-                            <div className={user.isLoggedIn === true ? 'account logged' : 'account'} onClick={() => handleSignIn()}>
-                                <MdAccountCircle className={user.isLoggedIn === true ? 'icon logged' : 'icon'} /> Tài khoản
+                            <div className="account" onClick={() => handleSignIn()}>
+                                <MdAccountCircle className='icon' /> Tài khoản
                             </div>
                             :
-                            <Dropdown menu={{ items }} >
+                            <Dropdown menu={{ items }}>
                                 <div className={user.isLoggedIn === true ? 'account logged' : 'account'} onClick={() => handleSignIn()}>
-                                    <MdAccountCircle className={user.isLoggedIn === true ? 'icon logged' : 'icon'} /> Tài khoản
+                                    {user.avatar ?
+                                        <div className='avatar'>
+                                            <img alt="avatar" src={user.avatar} />
+                                        </div>
+                                        :
+                                        <MdAccountCircle className={user.isLoggedIn === true ? 'icon logged' : 'icon'} />
+                                    }
+                                    Tài khoản
                                 </div>
                             </Dropdown>
                         }

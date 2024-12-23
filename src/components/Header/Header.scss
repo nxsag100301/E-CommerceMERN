@@ -96,7 +96,6 @@
             color     : #a5a4ab;
             font-size : 14px;
             margin-top: 10px;
-            cursor    : pointer;
         }
     }
 
@@ -153,6 +152,21 @@
 
                 &.logged {
                     color: #0067ff;
+                }
+
+                .avatar {
+                    height       : 22px;
+                    width        : 22px;
+                    border-radius: 50%;
+                    border       : 2px solid #0067ff;
+
+                    img {
+                        height       : 22px;
+                        width        : 22px;
+                        border-radius: 50%;
+                        object-fit   : cover;
+                    }
+
                 }
             }
 

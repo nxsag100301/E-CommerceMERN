@@ -4,155 +4,37 @@ import './CardComponent.scss'
 import { StarOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
-const CardComponent = () => {
+const CardComponent = (props) => {
     const navigate = useNavigate()
+    const { listProduct } = props
     return (
         <div className='card-container'>
-            <Card className='card'
-                onClick={() => navigate(`/detail-product`)}
-                styles={{ body: { padding: "10px", }, }}
-                hoverable
-                style={{ width: 200 }}
-                cover={<img alt="example" src="https://salt.tikicdn.com/cache/750x750/ts/product/08/9b/82/596cbffa77acc3b8b8aa9f06e7b63c88.jpg.webp" />}
-            >
-                <div className='card-title'>Iphone</div>
-                <div className='rate-selled'>
-                    <span className='card-rate'>4,9 <StarOutlined style={{ fontSize: "14px", color: 'yellow' }} /></span>&nbsp;
-                    <span className='card-selled'> | Đã bán 200+</span>
-                </div>
-                <div className='price-discount'>
-                    <span className='price'>3.000.000 &#8363;</span>
-                    <span className='discount'>
-                        -10%
-                    </span>
-                </div>
-            </Card>
-            <Card className='card'
-                styles={{ body: { padding: "10px", }, }}
-                hoverable
-                style={{ width: 200 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-            >
-                <div className='card-title'>Iphone</div>
-                <div className='rate-selled'>
-                    <span className='card-rate'>4,9 <StarOutlined style={{ fontSize: "14px", color: 'yellow' }} /></span>&nbsp;
-                    <span className='card-selled'> | Đã bán 200+</span>
-                </div>
-                <div className='price-discount'>
-                    <span className='price'>3.000.000 &#8363;</span>
-                    <span className='discount'>
-                        -10%
-                    </span>
-                </div>
-            </Card>
-            <Card className='card'
-                styles={{ body: { padding: "10px", }, }}
-                hoverable
-                style={{ width: 200 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-            >
-                <div className='card-title'>Iphone</div>
-                <div className='rate-selled'>
-                    <span className='card-rate'>4,9 <StarOutlined style={{ fontSize: "14px", color: 'yellow' }} /></span>&nbsp;
-                    <span className='card-selled'> | Đã bán 200+</span>
-                </div>
-                <div className='price-discount'>
-                    <span className='price'>3.000.000 &#8363;</span>
-                    <span className='discount'>
-                        -10%
-                    </span>
-                </div>
-            </Card>
-            <Card className='card'
-                styles={{ body: { padding: "10px", }, }}
-                hoverable
-                style={{ width: 200 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-            >
-                <div className='card-title'>Iphone</div>
-                <div className='rate-selled'>
-                    <span className='card-rate'>4,9 <StarOutlined style={{ fontSize: "14px", color: 'yellow' }} /></span>&nbsp;
-                    <span className='card-selled'> | Đã bán 200+</span>
-                </div>
-                <div className='price-discount'>
-                    <span className='price'>3.000.000 &#8363;</span>
-                    <span className='discount'>
-                        -10%
-                    </span>
-                </div>
-            </Card>
-            <Card className='card'
-                styles={{ body: { padding: "10px", }, }}
-                hoverable
-                style={{ width: 200 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-            >
-                <div className='card-title'>Iphone</div>
-                <div className='rate-selled'>
-                    <span className='card-rate'>4,9 <StarOutlined style={{ fontSize: "14px", color: 'yellow' }} /></span>&nbsp;
-                    <span className='card-selled'> | Đã bán 200+</span>
-                </div>
-                <div className='price-discount'>
-                    <span className='price'>3.000.000 &#8363;</span>
-                    <span className='discount'>
-                        -10%
-                    </span>
-                </div>
-            </Card>
-            <Card className='card'
-                styles={{ body: { padding: "10px", }, }}
-                hoverable
-                style={{ width: 200 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-            >
-                <div className='card-title'>Iphone</div>
-                <div className='rate-selled'>
-                    <span className='card-rate'>4,9 <StarOutlined style={{ fontSize: "14px", color: 'yellow' }} /></span>&nbsp;
-                    <span className='card-selled'> | Đã bán 200+</span>
-                </div>
-                <div className='price-discount'>
-                    <span className='price'>3.000.000 &#8363;</span>
-                    <span className='discount'>
-                        -10%
-                    </span>
-                </div>
-            </Card>
-            <Card className='card'
-                styles={{ body: { padding: "10px", }, }}
-                hoverable
-                style={{ width: 200 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-            >
-                <div className='card-title'>Iphone</div>
-                <div className='rate-selled'>
-                    <span className='card-rate'>4,9 <StarOutlined style={{ fontSize: "14px", color: 'yellow' }} /></span>&nbsp;
-                    <span className='card-selled'> | Đã bán 200+</span>
-                </div>
-                <div className='price-discount'>
-                    <span className='price'>3.000.000 &#8363;</span>
-                    <span className='discount'>
-                        -10%
-                    </span>
-                </div>
-            </Card>
-            <Card className='card'
-                styles={{ body: { padding: "10px", }, }}
-                hoverable
-                style={{ width: 200 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-            >
-                <div className='card-title'>Iphone</div>
-                <div className='rate-selled'>
-                    <span className='card-rate'>4,9 <StarOutlined style={{ fontSize: "14px", color: 'yellow' }} /></span>&nbsp;
-                    <span className='card-selled'> | Đã bán 200+</span>
-                </div>
-                <div className='price-discount'>
-                    <span className='price'>3.000.000 &#8363;</span>
-                    <span className='discount'>
-                        -10%
-                    </span>
-                </div>
-            </Card>
+            {listProduct?.length > 0 &&
+                listProduct.map((item, index) => {
+                    return (
+                        <Card className='card' key={`productindex${index}`}
+                            onClick={() => navigate(`/detail-product`)}
+                            styles={{ body: { padding: "10px", }, }}
+                            hoverable
+                            style={{ width: 200 }}
+                            cover={
+                                <img alt="example"
+                                    src="https://salt.tikicdn.com/cache/750x750/ts/product/08/9b/82/596cbffa77acc3b8b8aa9f06e7b63c88.jpg.webp" />}
+                        >
+                            <div className='card-title'>{item.name}</div>
+                            <div className='rate-selled'>
+                                <span className='card-rate'>{item.rating} <StarOutlined style={{ fontSize: "14px", color: 'yellow' }} /></span>&nbsp;
+                                <span className='card-selled'> | Đã bán {item.selled || 200}+</span>
+                            </div>
+                            <div className='price-discount'>
+                                <span className='price'>{item.price.toLocaleString('vi-VN')} &#8363;</span>
+                                <span className='discount'>
+                                    -{item.discount || 10}%
+                                </span>
+                            </div>
+                        </Card>
+                    )
+                })}
         </div>
     );
 };

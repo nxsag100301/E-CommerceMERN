@@ -1,42 +1,40 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { routes } from './routes';
 import DefaultComponent from './components/DefaultComponent/DefaultComponent';
 import { Fragment } from 'react';
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
-
-  // useEffect(()=> {
-  //   fetchApi()
-  // },[])
-
-  const fetchApi = async () => {
-    const res = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/product`)
-      return res?.data
-  }
-
-  useQuery({ queryKey: ['allProduct'], queryFn: fetchApi })
-
-
+  // useAutoRefreshToken()
   return (
     <div>
-      <Router>
+      <BrowserRouter>
         <Routes>
-          {routes.map(item => {
-            const Page = item.page
-            const Layout = item.isShowHeader ? DefaultComponent : Fragment
+          {routes.map((item) => {
+            const Page = item.page;
+            const Layout = item.isShowHeader ? DefaultComponent : Fragment;
+
             return (
-              <Route key={item.path} path={item.path} element={
-                <Layout>
-                  <Page />
-                </Layout>
-              } />
-            )
+              <Route key={item.path} path={item.path}
+                element={
+                  item.isPrivate ? (
+                    <PrivateRoute>
+                      <Layout>
+                        <Page />
+                      </Layout>
+                    </PrivateRoute>
+                  ) : (
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  )
+                }
+              />
+            );
           })}
         </Routes>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

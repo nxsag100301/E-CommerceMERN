@@ -2,6 +2,7 @@ import React from 'react';
 import './NavbarComponent.scss'
 import { Checkbox, Rate } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import TypeProduct from '../TypeProduct/TypeProduct';
 
 
 const onChange = (checkedValues) => {
@@ -21,9 +22,7 @@ const NavbarComponent = () => {
                         {options?.length > 0 && options.map((item, index) => {
                             return (
                                 <div key={`navbaroption${index}`} className='navbar-options'>
-                                    <span onClick={() => navigate(`/${item}`)}>
-                                        {item}
-                                    </span>
+                                    <TypeProduct name={item} key={item} />
                                 </div>
                             )
                         })}

@@ -2,7 +2,8 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // Lưu trữ trong localStorage
 import counterReducer from './slices/counterSlice';
-import userReducer from './slices/userSlice';
+import userReducer from './slices/userSlice'
+
 
 // Cấu hình cho Redux Persist
 const persistConfig = {
@@ -23,6 +24,10 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // Tạo store
 export const store = configureStore({
     reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
 });
 
 // Tạo persistor để sử dụng với PersistGate
