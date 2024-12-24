@@ -47,7 +47,6 @@ const DetailUserModal = (props) => {
             id: userInfor?._id,
             name, address, isAdmin, phone
         })
-        console.log('check res:', res)
         if (res?.errCode === 0) {
             message.success("Cập nhật người dùng thành công!")
             setIsShowDetail(false)

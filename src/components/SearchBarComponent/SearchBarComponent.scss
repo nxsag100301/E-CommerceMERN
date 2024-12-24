@@ -1,0 +1,30 @@
+.item-search {
+    display: flex;
+
+    .image-item {
+        width: 110px;
+
+        img {
+            width : 100%;
+            height: 110px;
+        }
+    }
+
+    .info-item {
+        margin-left   : 20px;
+        display       : flex;
+        width         : 540px;
+        flex-wrap     : wrap;
+        flex-direction: column;
+
+        .name-item {
+            flex-wrap : wrap;
+            display   : inline-flex;
+            min-height: 80px;
+        }
+
+        .price-item {
+            color: red;
+        }
+    }
+}

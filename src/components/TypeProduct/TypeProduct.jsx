@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 const TypeProduct = (props) => {
     const navigate = useNavigate()
-    const { name } = props
+    const { name, value } = props
     return (
-        <span className='type-product-container' onClick={() => navigate(`/product/${name}`)}>
+        <span className='type-product-container' onClick={() => navigate(`/product/${value}`)}>
             {name}
         </span>
     );

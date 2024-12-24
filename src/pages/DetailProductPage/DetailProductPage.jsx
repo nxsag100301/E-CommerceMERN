@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DetailProductPage.scss'
 import logoFreeShip from '../../assets/image/logo-free-ship.png'
 import logoDoiTra from '../../assets/image/logo-30-doitra.png'
@@ -7,15 +7,35 @@ import logoVoucher from '../../assets/image/giasoc.png'
 import voucher from '../../assets/image/voucher.png'
 import { Button, Rate } from 'antd';
 import { FaPlus, FaMinus, FaCartPlus } from "react-icons/fa";
+import { useParams } from 'react-router-dom';
+import { detailProduct } from '../../utils/productApi';
 
 
 const DetailProductPage = () => {
+    const { id } = useParams()
     const [productQuantity, setProductQuantily] = useState(1)
+    const [product, setProduct] = useState()
+
+    useEffect(() => {
+        fetchDetailProduct()
+    }, [id])
+
+    const fetchDetailProduct = async () => {
+        const res = await detailProduct(id)
+        if (res?.errCode === 0) {
+            setProduct(res.product)
+        }
+        else {
+            console.log('Error:', res?.message)
+        }
+    }
     return (
         <div className='detail-product-container'>
             <div className='detail-content-top'>
-                <div className='detail-product-image'>
+                <div className='detail-product-image' >
+                    <div className='product-image' style={{ backgroundImage: `url(${product?.image})` }}>
 
+                    </div>
                 </div>
                 <div className='detail-product-info'>
                     <div className='detail-product-logo'>
@@ -26,19 +46,20 @@ const DetailProductPage = () => {
                         <span className='company-2'>Apple</span>
                     </div>
                     <div className='detail-product-title'>
-                        Apple iPhone 16 Pro Max
+                        {product?.name}
                     </div>
                     <div className='detail-product-rate'>
-                        5.0 <Rate className='icon' disabled defaultValue={5} />
+                        {Number.isInteger(product?.rating) ? `${product?.rating}.0` : product?.rating?.toString()}
+                        <Rate className='icon' disabled value={product?.rating} />
                         <div className='border'>
 
                         </div>
                         <div className='selled'>
-                            Đã bán 999
+                            Đã bán 999+
                         </div>
                     </div>
                     <div className='detail-product-price'>
-                        33.490.000₫
+                        {product?.price?.toLocaleString('vi-VN')}₫
                     </div>
                     <div className='product-quantity'>
                         <div className='title'>

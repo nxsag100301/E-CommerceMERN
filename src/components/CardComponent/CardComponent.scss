@@ -1,7 +1,6 @@
 .card-container {
-    display    : flex;
-    align-items: center;
-    flex-wrap  : wrap;
+    display  : flex;
+    flex-wrap: wrap;
 
     .card {
         border-radius: 5px !important;
@@ -10,8 +9,8 @@
         img {
             border-top-right-radius: 5px !important;
             border-top-left-radius : 5px !important;
-            height                 : 200px;
-            width                  : 199px;
+            height                 : 199px;
+            width                  : 197px;
             object-fit             : cover;
             position               : relative;
             left                   : 1px;
@@ -20,11 +19,13 @@
         .card-title {
             font-size    : 15px;
             margin-bottom: 5px;
+            min-height   : 70px;
         }
 
         .rate-selled {
-            display  : flex;
-            font-size: 12px;
+            display      : flex;
+            font-size    : 12px;
+            margin-bottom: 10px;
 
             .card-rate {
                 display    : flex;
@@ -36,9 +37,12 @@
         }
 
         .price-discount {
+            margin-top : auto;
             display    : flex;
             align-items: center;
             gap        : 10px;
+            position   : relative;
+            bottom     : 5px;
 
             .price {
                 font-size  : 16px;
@@ -54,7 +58,5 @@
             }
 
         }
-
-
     }
 }

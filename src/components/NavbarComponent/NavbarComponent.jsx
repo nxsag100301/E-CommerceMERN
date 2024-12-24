@@ -1,7 +1,6 @@
 import React from 'react';
 import './NavbarComponent.scss'
 import { Checkbox, Rate } from 'antd';
-import { useNavigate } from 'react-router-dom';
 import TypeProduct from '../TypeProduct/TypeProduct';
 
 
@@ -10,7 +9,6 @@ const onChange = (checkedValues) => {
 };
 
 const NavbarComponent = () => {
-    const navigate = useNavigate()
     const renderContent = (type, options) => {
         switch (type) {
             case 'text':
@@ -22,7 +20,7 @@ const NavbarComponent = () => {
                         {options?.length > 0 && options.map((item, index) => {
                             return (
                                 <div key={`navbaroption${index}`} className='navbar-options'>
-                                    <TypeProduct name={item} key={item} />
+                                    <TypeProduct name={item.label} key={item.value} value={item.value} />
                                 </div>
                             )
                         })}
@@ -78,7 +76,14 @@ const NavbarComponent = () => {
     }
     return (
         <div className='navbar-container'>
-            {renderContent('text', ['TV', 'Tủ lạnh', 'Laptop', 'Điện thoại', 'Quần áo'])}
+            {renderContent('text', [
+                { label: 'TV', value: "tv" },
+                { label: 'Tủ lạnh', value: "tulanh" },
+                { label: 'Laptop', value: "laptop" },
+                { label: 'Điện thoại', value: "dienthoai" },
+                { label: 'Quần áo', value: "quanao" }
+            ]
+            )}
             {renderContent('company', [
                 { value: 'apple', label: 'Apple' },
                 { value: 'samsung', label: 'Samsung' },

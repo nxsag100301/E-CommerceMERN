@@ -80,6 +80,9 @@ const TableProductComponent = (props) => {
             title: 'Tên sản phẩm',
             dataIndex: 'name',
             key: 'name',
+            render: (name) => (
+                <div style={{ width: "300px" }}>{name}</div>
+            )
         },
         {
             title: 'Ảnh sản phẩm',
@@ -99,6 +102,9 @@ const TableProductComponent = (props) => {
             title: 'Giá',
             dataIndex: 'price',
             key: 'price',
+            render: (price) => (
+                <div>{price.toLocaleString('vi-VN')}&#8363;</div>
+            ),
         },
         {
             title: 'Tồn kho',

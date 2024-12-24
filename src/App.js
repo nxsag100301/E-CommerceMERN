@@ -4,12 +4,14 @@ import { routes } from './routes';
 import DefaultComponent from './components/DefaultComponent/DefaultComponent';
 import { Fragment } from 'react';
 import PrivateRoute from './routes/PrivateRoute';
+import ScrollToTop from './components/ScrollTop/ScrollTop';
 
 function App() {
   // useAutoRefreshToken()
   return (
     <div>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           {routes.map((item) => {
             const Page = item.page;

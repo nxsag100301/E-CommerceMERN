@@ -1,5 +1,6 @@
 import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
 import AdminPage from "../pages/AdminSide/AdminPage/AdminPage";
+import CartPage from "../pages/CartPage/CartPage";
 import DetailProductPage from "../pages/DetailProductPage/DetailProductPage";
 import HomePage from "../pages/HomePage/HomePage";
 import OrderPage from "../pages/OrderPage/OrderPage";
@@ -29,7 +30,7 @@ export const routes = [
         isShowHeader: true
     },
     {
-        path: '/detail-product',
+        path: '/detail-product/:id',
         page: DetailProductPage,
         isShowHeader: true
     },
@@ -42,6 +43,11 @@ export const routes = [
         path: '/system/admin',
         page: AdminPage,
         isPrivate: true
+    },
+    {
+        path: '/cart',
+        page: CartPage,
+        isShowHeader: true
     },
     {
         path: '*',

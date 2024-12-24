@@ -112,13 +112,21 @@
                 gap          : 5px;
                 font-weight  : 400;
                 padding      : 5px 10px;
-                color        : #0067ff;
+                color        : #a5a4ab;
                 cursor       : pointer;
                 border-radius: 8px;
 
+                &.active {
+                    color: #0067ff;
+                }
+
                 .icon {
                     font-size: 25px;
-                    color    : #0067ff;
+                    color    : #a5a4ab;
+
+                    &.active {
+                        color: #0067ff;
+                    }
                 }
 
                 &:hover {
@@ -210,7 +218,13 @@
                     align-items: center;
                 }
 
-                .text2 {}
+                .text2 {
+                    white-space  : nowrap;
+                    overflow     : hidden;
+                    text-overflow: ellipsis;
+                    width        : 200px;
+                    display      : inline-block;
+                }
             }
         }
     }

@@ -1,42 +1,45 @@
 import React, { useState } from 'react';
 import './Header.scss'
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { IoIosSearch } from "react-icons/io";
 import { RiHome5Fill } from "react-icons/ri";
 import { MdAccountCircle } from "react-icons/md";
 import { GiPositionMarker } from "react-icons/gi";
 import TypeProduct from '../TypeProduct/TypeProduct';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Badge, message } from 'antd';
 import ModalSignIn from '../ModalSignIn/ModalSignIn';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dropdown } from 'antd';
 import { logout } from '../../redux/slices/userSlice';
 import { jwtDecode } from "jwt-decode";
+import SearchBarComponent from '../SearchBarComponent/SearchBarComponent';
 
 
 
 const Header = ({ style }) => {
     const [isShowModalSignIn, setIsShowModalSignIn] = useState(false)
-    const arr = ['TV', 'Tủ lạnh', 'Laptop', 'Điện thoại', 'Quần áo']
+    const arr = [
+        { label: 'TV', value: "tv" },
+        { label: 'Tủ lạnh', value: "tulanh" },
+        { label: 'Laptop', value: "laptop" },
+        { label: 'Điện thoại', value: "dienthoai" },
+        { label: 'Quần áo', value: "quanao" }
+    ]
     const navigate = useNavigate()
     const user = useSelector((state) => state.user);
     const access_token = localStorage.getItem('access_token')
+    const location = useLocation()
     let isAdmin = ''
-    let userId = ''
     if (access_token) {
         const decoded = jwtDecode(access_token);
         if (!decoded) {
             isAdmin = ''
-            userId = ''
         }
         else {
             isAdmin = decoded?.payload?.isAdmin
-            userId = decoded?.payload?.id
         }
     }
     else {
-        userId = ''
         isAdmin = ''
     }
 
@@ -113,28 +116,20 @@ const Header = ({ style }) => {
                     </div>
                 </div>
                 <div className='header-content-center'>
-                    <div className='header-search'>
-                        <div className='search-bar'>
-                            <IoIosSearch className='icon' />
-                            <input placeholder='Search something' />
-                        </div>
-                        <div className='search-button'>
-                            <button>Tìm kiếm</button>
-                        </div>
-                    </div>
+                    <SearchBarComponent />
                     <div className='header-type-product'>
                         {arr.map((item) => {
                             return (
-                                <TypeProduct name={item} key={item} />
+                                <TypeProduct name={item.label} key={item.value} value={item.value} />
                             )
                         })}
                     </div>
                 </div>
                 <div className='header-content-right'>
                     <div className='content-top'>
-                        <div className='home-page'
+                        <div className={location.pathname === "/" ? "home-page active" : "home-page"}
                             onClick={() => navigate('/')}>
-                            <RiHome5Fill className='icon' /> Trang chủ
+                            <RiHome5Fill className={location.pathname === "/" ? "icon active" : "icon"} /> Trang chủ
                         </div>
                         {!user.isLoggedIn ?
                             <div className="account" onClick={() => handleSignIn()}>
@@ -158,7 +153,7 @@ const Header = ({ style }) => {
                         <div className='border'></div>
                         <div className='cart'>
                             <Badge count={11} size="small" overflowCount={10}>
-                                <AiOutlineShoppingCart className='icon' />
+                                <AiOutlineShoppingCart className='icon' onClick={() => navigate('/cart')} />
                             </Badge>
                         </div>
                     </div>
@@ -168,7 +163,7 @@ const Header = ({ style }) => {
                                 <GiPositionMarker />Giao đến:
                             </div>
                             <div className='text2'>
-                                Bạn muốn giao hàng tới đâu?
+                                {user.address ? user.address : "Bạn muốn giao hàng tới đâu?"}
                             </div>
                         </div>
                     </div>

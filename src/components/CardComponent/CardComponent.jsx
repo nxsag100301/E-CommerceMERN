@@ -13,13 +13,13 @@ const CardComponent = (props) => {
                 listProduct.map((item, index) => {
                     return (
                         <Card className='card' key={`productindex${index}`}
-                            onClick={() => navigate(`/detail-product`)}
+                            onClick={() => navigate(`/detail-product/${item._id}`)}
                             styles={{ body: { padding: "10px", }, }}
                             hoverable
-                            style={{ width: 200 }}
+                            style={{ width: 200, minHeight: 350 }}
                             cover={
-                                <img alt="example"
-                                    src="https://salt.tikicdn.com/cache/750x750/ts/product/08/9b/82/596cbffa77acc3b8b8aa9f06e7b63c88.jpg.webp" />}
+                                <img alt="example" style={{ objectFit: "cover" }}
+                                    src={item.image} />}
                         >
                             <div className='card-title'>{item.name}</div>
                             <div className='rate-selled'>
