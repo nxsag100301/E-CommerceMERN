@@ -3,6 +3,7 @@ import './HomeFooter.scss'
 import { FaFacebook, FaGithub, FaPhoneAlt } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { IoMdHome, IoIosMail, IoMdSearch } from "react-icons/io";
+import SearchBarComponent from '../SearchBarComponent/SearchBarComponent';
 
 const HomeFooter = () => {
     return (

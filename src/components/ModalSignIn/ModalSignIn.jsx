@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Input, message, Spin } from 'antd';
 import './ModalSignIn.scss'
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userInfo } from '../../redux/slices/userSlice.js';
 import { userLoginServiceRedux1 } from '../../redux/action/userAction.js';
@@ -13,14 +12,13 @@ const ModalSignIn = (props) => {
 
     const [caseSignUpSignIn, setCaseSignUpSignIn] = useState('signin')
     const [loading, setLoading] = useState(false);
-    const { isShowModal, setIsShowModal } = props
+    const { isShowModal, closeModal } = props
     const [form] = Form.useForm();
-    const navigate = useNavigate()
     const dispatch = useDispatch()
 
 
     const handleCloseModal = () => {
-        setIsShowModal(false)
+        closeModal()
         form.resetFields();
     }
 
@@ -47,8 +45,7 @@ const ModalSignIn = (props) => {
                 dispatch(userInfo(res))
                 setLoading(false)
                 form.resetFields();
-                setIsShowModal(false)
-                navigate('/')
+                closeModal()
             }
         }
         else if (caseSignUpSignIn === 'signup') {

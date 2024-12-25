@@ -7,6 +7,7 @@ const initialState = {
     phone: '',
     address: '',
     isLoggedIn: false,
+    isShowModal: false
 };
 
 export const userSlice = createSlice({
@@ -30,11 +31,17 @@ export const userSlice = createSlice({
             state.address = ''
             state.isLoggedIn = false
         },
+        openModal: (state) => {
+            state.isShowModal = true
+        },
+        closeModal: (state) => {
+            state.isShowModal = false
+        }
 
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { userInfo, logout } = userSlice.actions;
+export const { userInfo, logout, openModal, closeModal } = userSlice.actions;
 
 export default userSlice.reducer;

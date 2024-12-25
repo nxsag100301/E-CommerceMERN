@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Header.scss'
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { RiHome5Fill } from "react-icons/ri";
@@ -10,14 +10,13 @@ import { Badge, message } from 'antd';
 import ModalSignIn from '../ModalSignIn/ModalSignIn';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dropdown } from 'antd';
-import { logout } from '../../redux/slices/userSlice';
+import { closeModal, logout, openModal } from '../../redux/slices/userSlice';
 import { jwtDecode } from "jwt-decode";
 import SearchBarComponent from '../SearchBarComponent/SearchBarComponent';
 
 
 
 const Header = ({ style }) => {
-    const [isShowModalSignIn, setIsShowModalSignIn] = useState(false)
     const arr = [
         { label: 'TV', value: "tv" },
         { label: 'Tủ lạnh', value: "tulanh" },
@@ -27,6 +26,9 @@ const Header = ({ style }) => {
     ]
     const navigate = useNavigate()
     const user = useSelector((state) => state.user);
+    const orderItem = useSelector((state) => state.order.orderItems);
+    let productInCart = orderItem.length
+    let isShowModal = user?.isShowModal
     const access_token = localStorage.getItem('access_token')
     const location = useLocation()
     let isAdmin = ''
@@ -47,12 +49,13 @@ const Header = ({ style }) => {
 
     const handleSignIn = () => {
         if (!user.isLoggedIn) {
-            setIsShowModalSignIn(true)
+            dispatch(openModal())
         }
     }
 
     const handleLogOut = () => {
         localStorage.clear();
+        localStorage.removeItem('persist:root')
         dispatch(logout())
         navigate('/')
         message.info("Đăng xuất thành công!")
@@ -67,21 +70,19 @@ const Header = ({ style }) => {
         }
     }
 
-    const handleViewProfileUser = async () => {
-        navigate('/profile-user')
-    }
-
     const items = [
         {
             key: '1',
             label: (
-                <div onClick={() => handleViewProfileUser()}>Thông tin tài khoản</div>
+                <div onClick={() => navigate('/profile-user')}>Thông tin tài khoản</div>
             ),
         },
         {
             key: '2',
             label: (
-                <div>Đơn hàng của tôi</div>
+                <div onClick={() => navigate('/cart')}>
+                    Đơn hàng của tôi
+                </div>
             ),
         },
         {
@@ -101,12 +102,26 @@ const Header = ({ style }) => {
         },
     ];
 
+    const handleCloseModal = () => {
+        dispatch(closeModal())
+    }
+
+    const handleNavigateCart = () => {
+        if (user?.isLoggedIn === false) {
+            message.info("Vui lòng đăng nhập!")
+            dispatch(openModal())
+        }
+        else {
+            navigate('/cart')
+        }
+    }
+
 
     return (
         <>
             <ModalSignIn
-                isShowModal={isShowModalSignIn}
-                setIsShowModal={setIsShowModalSignIn}
+                isShowModal={isShowModal}
+                closeModal={handleCloseModal}
             />
             <div className='header-container' style={style}>
                 <div className='header-logo'>
@@ -152,8 +167,8 @@ const Header = ({ style }) => {
 
                         <div className='border'></div>
                         <div className='cart'>
-                            <Badge count={11} size="small" overflowCount={10}>
-                                <AiOutlineShoppingCart className='icon' onClick={() => navigate('/cart')} />
+                            <Badge count={+productInCart} size="medium" overflowCount={10}>
+                                <AiOutlineShoppingCart className='icon' onClick={() => handleNavigateCart()} />
                             </Badge>
                         </div>
                     </div>

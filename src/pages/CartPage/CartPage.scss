@@ -14,10 +14,12 @@
         gap    : 20px;
 
         .cart-content-left {
-            width     : 70%;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            width           : 70%;
+            box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
+            background-color: white;
 
             .cart-content {
+
                 .button-p-m {
                     display      : flex;
                     margin-bottom: 10px;

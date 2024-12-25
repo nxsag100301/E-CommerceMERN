@@ -5,16 +5,22 @@ import logoDoiTra from '../../assets/image/logo-30-doitra.png'
 import logoOfficial from '../../assets/image/logo-official.png'
 import logoVoucher from '../../assets/image/giasoc.png'
 import voucher from '../../assets/image/voucher.png'
-import { Button, Rate } from 'antd';
+import { Button, message, Rate } from 'antd';
 import { FaPlus, FaMinus, FaCartPlus } from "react-icons/fa";
 import { useParams } from 'react-router-dom';
 import { detailProduct } from '../../utils/productApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { openModal } from '../../redux/slices/userSlice';
+import { addOrderProduct } from '../../redux/slices/orderSlice';
 
 
 const DetailProductPage = () => {
     const { id } = useParams()
     const [productQuantity, setProductQuantily] = useState(1)
     const [product, setProduct] = useState()
+
+    const user = useSelector((state) => state.user)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         fetchDetailProduct()
@@ -29,6 +35,37 @@ const DetailProductPage = () => {
             console.log('Error:', res?.message)
         }
     }
+
+    const handleAddToCart = () => {
+        if (user?.isLoggedIn === false) {
+            message.info("Vui lòng đăng nhập!")
+            dispatch(openModal())
+        }
+        else {
+            const data =
+            {
+                orderItem: {
+                    productId: product?._id,
+                    name: product?.name,
+                    amount: productQuantity,
+                    image: product?.image,
+                    price: product?.price,
+                }
+            }
+            dispatch(addOrderProduct(data))
+        }
+    }
+
+    const handleBuyNow = () => {
+        if (user?.isLoggedIn === false) {
+            message.info("Vui lòng đăng nhập!")
+            dispatch(openModal())
+        }
+        else {
+            console.log("Buy now")
+        }
+    }
+
     return (
         <div className='detail-product-container'>
             <div className='detail-content-top'>
@@ -59,7 +96,7 @@ const DetailProductPage = () => {
                         </div>
                     </div>
                     <div className='detail-product-price'>
-                        {product?.price?.toLocaleString('vi-VN')}₫
+                        {(product?.price * productQuantity).toLocaleString('vi-VN')}₫
                     </div>
                     <div className='product-quantity'>
                         <div className='title'>
@@ -79,7 +116,7 @@ const DetailProductPage = () => {
                             </div>
                             <div className='border'></div>
                             <div className='add-to-cart'>
-                                <FaCartPlus className='icon' />
+                                <FaCartPlus className='icon' onClick={() => handleAddToCart()} />
                             </div>
                         </div>
                     </div>
@@ -117,11 +154,12 @@ const DetailProductPage = () => {
                     </div>
                     <div className='buy-product-button'>
                         <div className='buy-now-button'>
-                            <Button size='large' style={{
-                                width: "300px",
-                                backgroundColor: "#0b74e5", borderColor: "#0b74e5",
-                                color: "white",
-                            }}>Mua ngay</Button>
+                            <Button size='large' onClick={() => handleBuyNow()}
+                                style={{
+                                    width: "300px",
+                                    backgroundColor: "#0b74e5", borderColor: "#0b74e5",
+                                    color: "white"
+                                }}>Mua ngay</Button>
                         </div>
                         <div className='buy-now-button'>
                             <Button size='large' style={{
