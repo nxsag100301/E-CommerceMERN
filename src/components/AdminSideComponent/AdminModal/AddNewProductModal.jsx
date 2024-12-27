@@ -16,6 +16,7 @@ const AddNewProductModal = (props) => {
     const [productName, setProductName] = useState()
     const [productType, setProductType] = useState()
     const [price, setPrice] = useState()
+    const [discount, setDiscount] = useState(0)
     const [quantity, setQuantity] = useState(0)
     const [description, setDescription] = useState()
     const [image, setImage] = useState()
@@ -40,7 +41,8 @@ const AddNewProductModal = (props) => {
             type: productType,
             price: price,
             countInStock: quantity,
-            description: description
+            description: description,
+            discount: discount
         })
         if (res?.errCode === 0) {
             message.success("Thêm sản phẩm thành công")
@@ -51,6 +53,7 @@ const AddNewProductModal = (props) => {
             setPrice('')
             setQuantity(0)
             setDescription('')
+            setDiscount(0)
             setImage(null)
             setFileList([])
             form.resetFields()
@@ -113,20 +116,10 @@ const AddNewProductModal = (props) => {
                         }}
                     >
                         <Row gutter={[0, 20]}>
-                            <Col span={16}>
-                                <Form.Item label="Tên SP" labelCol={{ span: 4 }} wrapperCol={{ span: 18 }}>
-                                    <Input value={productName} onChange={(event) => setProductName(event.target.value)} />
-                                </Form.Item>
-                            </Col>
-                            <Col span={8}>
-                                <Form.Item label="Loại SP" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
-                                    <Select value={productType} onChange={(value) => setProductType(value)}>
-                                        <Select.Option value="tv">TV</Select.Option>
-                                        <Select.Option value="tulanh">Tủ lạnh</Select.Option>
-                                        <Select.Option value="laptop">Laptop</Select.Option>
-                                        <Select.Option value="dienthoai">Điện thoại</Select.Option>
-                                        <Select.Option value="quanao">Quần áo</Select.Option>
-                                    </Select>
+                            <Col span={24}>
+                                <Form.Item label="Tên SP" labelCol={{ span: 3 }} wrapperCol={{ span: 21 }}>
+                                    <Input style={{ position: "relative", left: "-8px" }}
+                                        value={productName} onChange={(event) => setProductName(event.target.value)} />
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -139,10 +132,30 @@ const AddNewProductModal = (props) => {
                             <Col span={8}>
                                 <Form.Item label="Số lượng" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
                                     <InputNumber
-                                        style={{ width: "100%" }}
+                                        style={{ width: "135px" }}
                                         value={quantity}
                                         onChange={(value) => setQuantity(value)}
                                     />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col span={16}>
+                                <Form.Item label="Loại SP" labelCol={{ span: 4 }} wrapperCol={{ span: 18 }}>
+                                    <Select
+                                        value={productType} onChange={(value) => setProductType(value)}>
+                                        <Select.Option value="tv">TV</Select.Option>
+                                        <Select.Option value="tulanh">Tủ lạnh</Select.Option>
+                                        <Select.Option value="laptop">Laptop</Select.Option>
+                                        <Select.Option value="dienthoai">Điện thoại</Select.Option>
+                                        <Select.Option value="quanao">Quần áo</Select.Option>
+                                    </Select>
+                                </Form.Item>
+                            </Col>
+                            <Col span={8}>
+                                <Form.Item label="Giảm giá" labelCol={{ span: 9 }} wrapperCol={{ span: 15 }}>
+                                    <InputNumber style={{ position: "relative", left: "-8px", width: "135px" }}
+                                        value={discount} onChange={(value) => setDiscount(value)} />
                                 </Form.Item>
                             </Col>
                         </Row>

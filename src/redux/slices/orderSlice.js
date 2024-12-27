@@ -1,19 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const initialState = {
     orderItems: [],
-    shippingAddress: {},
-    paymentMethod: '',
+    orderItemsSelected: [],
     itemsPrice: 0,
-    shippingPrice: 0,
-    taxPrice: 0,
+    totalDiscount: 0,
+    shippingPrice: 10000,
     totalPrice: 0,
-    user: '',
-    isPaid: false,
-    paidAt: '',
-    isDelivered: false,
-    deliveredAt: '',
 };
 
 export const orderSlice = createSlice({
@@ -52,6 +45,33 @@ export const orderSlice = createSlice({
             if (product) {
                 product.amount -= 1
             }
+        },
+        selectedItemsRedux: (state, action) => {
+            state.orderItemsSelected = action.payload
+        },
+        removeSelectedItemsRedux: (state) => {
+            state.orderItemsSelected = []
+        },
+        clearCart: (state) => {
+            state.orderItems = []
+            state.orderItemsSelected = []
+            state.shippingPrice = 10000
+            state.itemsPrice = 0
+            state.totalDiscount = 0
+            state.totalPrice = 0
+        },
+        updatePrice: (state, action) => {
+            state.itemsPrice = action.payload.price
+            state.totalDiscount = action.payload.discount
+            state.totalPrice = action.payload.total
+        },
+        updateShipPrice: (state, action) => {
+            state.shippingPrice = action.payload
+        },
+        orderSuccess: (state) => {
+            const idsToRemove = state.orderItemsSelected.map(item => item.product);
+            const newOrderItems = state.orderItems.filter(item => !idsToRemove.includes(item.productId));
+            state.orderItems = newOrderItems
         }
     },
 });
@@ -60,7 +80,8 @@ export const orderSlice = createSlice({
 export const {
     addOrderProduct, removeOrderProduct,
     plusAmountOrderProduct, minusAmountOrderProduct,
-    removeSelectedProduct
+    removeSelectedProduct, selectedItemsRedux, removeSelectedItemsRedux,
+    clearCart, updatePrice, updateShipPrice, orderSuccess
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

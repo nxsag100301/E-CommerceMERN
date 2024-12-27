@@ -50,6 +50,7 @@ const DetailProductPage = () => {
                     amount: productQuantity,
                     image: product?.image,
                     price: product?.price,
+                    discount: product?.discount
                 }
             }
             dispatch(addOrderProduct(data))

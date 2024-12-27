@@ -13,6 +13,7 @@ import { Dropdown } from 'antd';
 import { closeModal, logout, openModal } from '../../redux/slices/userSlice';
 import { jwtDecode } from "jwt-decode";
 import SearchBarComponent from '../SearchBarComponent/SearchBarComponent';
+import { clearCart } from '../../redux/slices/orderSlice';
 
 
 
@@ -57,6 +58,7 @@ const Header = ({ style }) => {
         localStorage.clear();
         localStorage.removeItem('persist:root')
         dispatch(logout())
+        dispatch(clearCart())
         navigate('/')
         message.info("Đăng xuất thành công!")
     }
@@ -80,7 +82,7 @@ const Header = ({ style }) => {
         {
             key: '2',
             label: (
-                <div onClick={() => navigate('/cart')}>
+                <div onClick={() => navigate('/manage-order')}>
                     Đơn hàng của tôi
                 </div>
             ),

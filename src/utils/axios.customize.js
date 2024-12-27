@@ -1,6 +1,6 @@
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-import { refreshTokenDefault } from "../services/UserService";
+// import { jwtDecode } from "jwt-decode";
+// import { refreshTokenDefault } from "../services/UserService";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_URL_BACKEND
@@ -9,30 +9,30 @@ const instance = axios.create({
 // Add a request interceptor
 instance.interceptors.request.use(async function (config) {
   const accessToken = localStorage.getItem('access_token')
-  const refreshToken = localStorage.getItem('refresh_token')
+  // const refreshToken = localStorage.getItem('refresh_token')
   config.headers.Authorization = `Bearer ${accessToken}`
-  let tokenRefreshed = ''
+  // let tokenRefreshed = ''
   // Do something before request is sent
-  if (accessToken && refreshToken) {
-    const decodedToken = jwtDecode(accessToken)
-    const currentTime = Math.floor(Date.now() / 1000)
-    if (decodedToken.exp - currentTime < 5) {
-      try {
-        const token = localStorage.getItem('refresh_token')
-        const res = await refreshTokenDefault({ token })
-        if (res?.data?.errCode === 0) {
-          tokenRefreshed = res?.data?.access_token
-          config.headers.Authorization = `Bearer ${tokenRefreshed}`
-        }
-        else {
-          console.log(res?.message)
-        }
-      }
-      catch (error) {
-        throw error;
-      }
-    }
-  }
+  // if (accessToken && refreshToken) {
+  //   const decodedToken = jwtDecode(accessToken)
+  //   const currentTime = Math.floor(Date.now() / 1000)
+  //   if (decodedToken.exp - currentTime < 5) {
+  //     try {
+  //       const token = localStorage.getItem('refresh_token')
+  //       const res = await refreshTokenDefault({ token })
+  //       if (res?.data?.errCode === 0) {
+  //         tokenRefreshed = res?.data?.access_token
+  //         config.headers.Authorization = `Bearer ${tokenRefreshed}`
+  //       }
+  //       else {
+  //         console.log(res?.message)
+  //       }
+  //     }
+  //     catch (error) {
+  //       throw error;
+  //     }
+  //   }
+  // }
   return config;
 }, function (error) {
   // Do something with request error

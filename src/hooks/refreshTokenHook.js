@@ -17,7 +17,7 @@ const useAutoRefreshToken = () => {
             } catch (error) {
                 console.error('Error refreshing token:', error);
             }
-        }, 29000);
+        }, 27000);
 
         return () => clearInterval(refreshTokenInterval);
     }, [isLoggedIn]);

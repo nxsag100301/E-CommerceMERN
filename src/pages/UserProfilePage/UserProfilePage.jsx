@@ -6,6 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 import noAvatar from '../../assets/image/no-avatar.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { userInfo } from '../../redux/slices/userSlice';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const UserProfilePage = () => {
@@ -17,6 +18,8 @@ const UserProfilePage = () => {
     const [avatarPreView, setAvatarPreView] = useState()
     const [change, setChange] = useState(false)
     const dispatch = useDispatch()
+    const location = useLocation()
+    const navigate = useNavigate()
     const userProfile = useSelector((state) => state.user);
 
     useEffect(() => {
@@ -98,6 +101,9 @@ const UserProfilePage = () => {
                 address: res?.userUpdate?.address,
             }
             dispatch(userInfo(payload))
+            if (location.state?.from) {
+                navigate(`${location.state?.from}`)
+            }
         }
         else {
             message.error(res?.message)

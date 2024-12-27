@@ -2,79 +2,72 @@
     padding         : 20px 100px;
     background-color: #efefef;
 
-    .cart-title {
-        font-size     : 20px;
-        font-weight   : 500;
-        text-transform: uppercase;
-        margin-bottom : 10px;
-    }
-
     .cart-main-content {
         display: flex;
         gap    : 20px;
 
-        .cart-content-left {
+
+        .cart-content-left1 {
             width           : 70%;
-            box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
-            background-color: white;
-            border-radius   : 8px;
+            background-color: #efefef;
 
-            .cart-content {
+            .cart-content-top {
+                box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
+                background-color: white;
+                border-radius   : 8px;
+                padding         : 10px 20px;
 
-                .button-p-m {
-                    display      : flex;
+                .title {
+                    font-size    : 18px;
+                    font-weight  : 500;
                     margin-bottom: 10px;
-                    gap          : 4px;
+                }
 
-                    .btn-plus {
-                        border         : 1px solid grey;
-                        width          : 23px;
-                        height         : 23px;
-                        display        : flex;
-                        align-items    : center;
-                        justify-content: center;
-                        cursor         : pointer;
-                        border-radius  : 3px;
+                .ship-method {
+                    display      : flex;
+                    margin-bottom: 20px;
 
-                        .icon {
-                            font-size: 10px;
-                            color    : grey;
-                        }
-
+                    .delivery-container {
+                        cursor          : pointer;
+                        border          : 1px solid #1aa7ff;
+                        min-width       : 200px;
+                        min-height      : 60px;
+                        border-radius   : 8px;
+                        display         : flex;
+                        align-items     : center;
+                        justify-content : left;
+                        padding-left    : 10px;
+                        background-color: #f0f8ff;
                     }
+                }
 
-                    .count {
-                        border         : 1px solid grey;
-                        border-radius  : 3px;
-                        min-width      : 30px;
-                        height         : 23px;
-                        display        : flex;
-                        align-items    : center;
-                        justify-content: center;
-                        color          : grey;
-                    }
+                .product-table {
+                    border       : 1px solid #ccc;
+                    margin-bottom: 10px;
+                    min-height   : 150px;
+                    border-radius: 8px;
+                }
+            }
 
-                    .btn-minus {
-                        border         : 1px solid grey;
-                        width          : 23px;
-                        height         : 23px;
-                        display        : flex;
-                        align-items    : center;
-                        justify-content: center;
-                        cursor         : pointer;
-                        border-radius  : 3px;
+            .cart-content-bot {
+                margin          : 20px 0;
+                padding         : 10px 20px;
+                background-color: white;
+                box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
+                border-radius   : 8px;
 
-                        .icon {
-                            font-size: 10px;
-                            color    : grey;
-                        }
+                .title {
+                    font-size    : 18px;
+                    font-weight  : 500;
+                    margin-bottom: 10px;
+                }
 
-                        &.disabled {
-                            pointer-events: none;
-                            opacity       : 0.5;
-                            cursor        : not-allowed;
-                        }
-
+                .payment-method {
+                    .custom-radio {
+                        display       : flex;
+                        align-items   : center;
+                        flex-direction: row;
+                        gap           : 10px;
                     }
                 }
             }
@@ -153,6 +146,7 @@
                     margin-top: 20px;
                 }
             }
+
         }
     }
 

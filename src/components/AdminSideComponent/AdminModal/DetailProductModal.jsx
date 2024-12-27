@@ -10,10 +10,11 @@ const DetailProductModal = (props) => {
     const [productType, setProductType] = useState()
     const [price, setPrice] = useState()
     const [quantity, setQuantity] = useState(0)
+    const [discount, setDiscount] = useState(0)
     const [description, setDescription] = useState()
     const [image, setImage] = useState()
     const [fileList, setFileList] = useState([])
-    const [hasChange, setHasChange] = useState(false)
+    const [hasChange, setHasChange] = useState(true)
     const [form] = Form.useForm()
 
 
@@ -32,6 +33,7 @@ const DetailProductModal = (props) => {
             setDescription(productInfo.description)
             setQuantity(productInfo.countInStock)
             setImage(productInfo.image)
+            setDiscount(productInfo?.discount || 0)
             if (productInfo.image) {
                 setFileList([
                     {
@@ -50,7 +52,7 @@ const DetailProductModal = (props) => {
     useEffect(() => {
         if (productName !== productInfo?.name || productType !== productInfo?.type ||
             quantity !== productInfo?.countInStock || price !== productInfo?.price ||
-            description !== productInfo?.description
+            description !== productInfo?.description || discount !== productInfo?.discount
         ) {
             setHasChange(true)
         }
@@ -58,7 +60,7 @@ const DetailProductModal = (props) => {
             setHasChange(false)
         )
 
-    }, [productName, productType, quantity, price, description])
+    }, [productName, productType, quantity, price, description, discount])
 
     const handleUploadImage = (info) => {
 
@@ -94,12 +96,13 @@ const DetailProductModal = (props) => {
             type: productType,
             price: price,
             countInStock: quantity,
-            description: description
+            description: description,
+            discount: discount
         })
         if (res?.errCode === 0) {
             message.success("Cập nhật thành công!")
             setIsShowDetail(false)
-            setHasChange(false)
+            // setHasChange(false)
             setActionSuccess(true)
         }
         else {
@@ -133,20 +136,10 @@ const DetailProductModal = (props) => {
                     }}
                 >
                     <Row gutter={[0, 20]}>
-                        <Col span={16}>
-                            <Form.Item label="Tên SP" labelCol={{ span: 4 }} wrapperCol={{ span: 18 }}>
-                                <Input value={productName} onChange={(event) => setProductName(event.target.value)} />
-                            </Form.Item>
-                        </Col>
-                        <Col span={8}>
-                            <Form.Item label="Loại SP" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
-                                <Select value={productType} onChange={(value) => setProductType(value)}>
-                                    <Select.Option value="tv">TV</Select.Option>
-                                    <Select.Option value="tulanh">Tủ lạnh</Select.Option>
-                                    <Select.Option value="laptop">Laptop</Select.Option>
-                                    <Select.Option value="dienthoai">Điện thoại</Select.Option>
-                                    <Select.Option value="quanao">Quần áo</Select.Option>
-                                </Select>
+                        <Col span={24}>
+                            <Form.Item label="Tên SP" labelCol={{ span: 3 }} wrapperCol={{ span: 21 }}>
+                                <Input style={{ position: "relative", left: "-8px" }}
+                                    value={productName} onChange={(event) => setProductName(event.target.value)} />
                             </Form.Item>
                         </Col>
                     </Row>
@@ -159,10 +152,30 @@ const DetailProductModal = (props) => {
                         <Col span={8}>
                             <Form.Item label="Tồn kho" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
                                 <InputNumber
-                                    style={{ width: "100%" }}
+                                    style={{ width: "135px" }}
                                     value={quantity}
                                     onChange={(value) => setQuantity(value)}
                                 />
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={16}>
+                            <Form.Item label="Loại SP" labelCol={{ span: 4 }} wrapperCol={{ span: 18 }}>
+                                <Select
+                                    value={productType} onChange={(value) => setProductType(value)}>
+                                    <Select.Option value="tv">TV</Select.Option>
+                                    <Select.Option value="tulanh">Tủ lạnh</Select.Option>
+                                    <Select.Option value="laptop">Laptop</Select.Option>
+                                    <Select.Option value="dienthoai">Điện thoại</Select.Option>
+                                    <Select.Option value="quanao">Quần áo</Select.Option>
+                                </Select>
+                            </Form.Item>
+                        </Col>
+                        <Col span={8}>
+                            <Form.Item label="Giảm giá" labelCol={{ span: 9 }} wrapperCol={{ span: 15 }}>
+                                <InputNumber style={{ position: "relative", left: "-8px", width: "135px" }}
+                                    value={discount} onChange={(value) => setDiscount(value)} />
                             </Form.Item>
                         </Col>
                     </Row>

@@ -3,7 +3,9 @@ import AdminPage from "../pages/AdminSide/AdminPage/AdminPage";
 import CartPage from "../pages/CartPage/CartPage";
 import DetailProductPage from "../pages/DetailProductPage/DetailProductPage";
 import HomePage from "../pages/HomePage/HomePage";
+import ManageOrder from "../pages/ManageOrder/ManageOrder";
 import OrderPage from "../pages/OrderPage/OrderPage";
+import PaymentPage from "../pages/PaymentPage/PaymentPage";
 import ProductPage from "../pages/ProductPage/ProductPage";
 import TypeProductPage from "../pages/TypeProductPage/TypeProductPage";
 import UserProfilePage from "../pages/UserProfilePage/UserProfilePage";
@@ -47,6 +49,16 @@ export const routes = [
     {
         path: '/cart',
         page: CartPage,
+        isShowHeader: true
+    },
+    {
+        path: '/payment',
+        page: PaymentPage,
+        isShowHeader: true
+    },
+    {
+        path: '/manage-order',
+        page: ManageOrder,
         isShowHeader: true
     },
     {

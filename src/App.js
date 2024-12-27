@@ -5,9 +5,10 @@ import DefaultComponent from './components/DefaultComponent/DefaultComponent';
 import { Fragment } from 'react';
 import PrivateRoute from './routes/PrivateRoute';
 import ScrollToTop from './components/ScrollTop/ScrollTop';
+import useAutoRefreshToken from './hooks/refreshTokenHook';
 
 function App() {
-  // useAutoRefreshToken()
+  useAutoRefreshToken()
   return (
     <div>
       <BrowserRouter>

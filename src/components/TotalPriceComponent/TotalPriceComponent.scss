@@ -1,0 +1,60 @@
+.cal-price {
+    background-color: white;
+    border-radius   : 7px;
+    display         : flex;
+    flex-direction  : column;
+    min-height      : 300px;
+    box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
+
+    .content-top {
+        height: 70%;
+
+        .address {
+            margin    : 0 30px;
+            margin-top: 20px;
+
+            span {
+                margin   : 0 10px;
+                font-size: 14px;
+                color    : #0b74e5;
+                cursor   : pointer;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+
+
+        .text {
+            display        : flex;
+            justify-content: space-between;
+            margin         : 10px 30px;
+
+            .title {}
+
+            .price {
+                font-weight: 500;
+            }
+        }
+    }
+
+    .content-bot {
+        height: 30%;
+
+        .total-price {
+            display        : flex;
+            justify-content: space-between;
+            margin         : 0 30px;
+            margin-bottom  : 20px;
+
+            .title {}
+
+            .total {
+                font-size  : 20px;
+                font-weight: 500;
+                color      : red;
+            }
+        }
+    }
+}
