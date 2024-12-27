@@ -11,13 +11,14 @@ Lọc theo danh mục:
 Tìm kiếm SP:
 ![image](https://github.com/user-attachments/assets/a7a5ab05-2cdc-472d-a801-c4c565c861e7)
 ![image](https://github.com/user-attachments/assets/96be19d8-2db0-4628-b857-0d7379208106)
-
 Chi tiết SP:
 ![image](https://github.com/user-attachments/assets/b7636968-2d9e-44ca-b93d-1b11f7cd531d)
 Đăng nhập:
 ![image](https://github.com/user-attachments/assets/2f91d901-be5e-45ad-a32c-b4b979986d89)
 Đăng ký:
 ![image](https://github.com/user-attachments/assets/b1fd94f7-d119-450d-8434-e391af4f023c)
+Thông tin người dùng:
+![image](https://github.com/user-attachments/assets/319966aa-b3ea-46a7-8436-44ace344b6d1)
 Giỏ hàng:
 ![image](https://github.com/user-attachments/assets/5d95e056-2d1a-4abc-be22-fdee29ae140b)
 Đặt hàng:
