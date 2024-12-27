@@ -1,6 +1,6 @@
 Công nghệ: ReactJS, Redux, NodeJS(v20.14.0), Jwt, MongoDB, RESTful API, Ant design
 
-Đang hoàn thiện...
+Đang hoàn thiện quản lý đơn hàng, thanh toán online...
 
 Trang chủ:
 ![image](https://github.com/user-attachments/assets/c563944f-ca0d-417a-bafd-cc1082fa7f79)
@@ -30,7 +30,7 @@ Chi tiết người dùng:
 ![image](https://github.com/user-attachments/assets/654a424c-e832-45cc-bd05-d84298e15aa1)
 Thêm người dùng:
 ![image](https://github.com/user-attachments/assets/a2878e1d-a5e9-41b5-ac56-66c1b8366a34)
-Đang hoàn thiện quản lý đơn hàng, thanh toán online...
+
 
 
 
