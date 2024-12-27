@@ -8,6 +8,10 @@ Trang chủ:
 Lọc theo danh mục:
 ![image](https://github.com/user-attachments/assets/08af2fc4-2ffe-4512-865e-907522758f5e)
 ![image](https://github.com/user-attachments/assets/4d0f6248-adca-460a-8ae9-42fac7432189)
+Tìm kiếm SP:
+![image](https://github.com/user-attachments/assets/a7a5ab05-2cdc-472d-a801-c4c565c861e7)
+![image](https://github.com/user-attachments/assets/96be19d8-2db0-4628-b857-0d7379208106)
+
 Chi tiết SP:
 ![image](https://github.com/user-attachments/assets/b7636968-2d9e-44ca-b93d-1b11f7cd531d)
 Đăng nhập:
