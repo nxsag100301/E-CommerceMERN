@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, message, Table } from 'antd';
 import './PaymentPage.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { postCreateOrder } from '../../utils/orderApi';
+import { getClientIdService, postCreateOrder } from '../../utils/orderApi';
 import { jwtDecode } from "jwt-decode";
 import TotalPriceComponent from '../../components/TotalPriceComponent/TotalPriceComponent';
 import { Radio, Space } from 'antd';
@@ -11,9 +11,11 @@ import momo from '../../assets/image/momo.jpg'
 import paypal from '../../assets/image/paypal.png'
 import { orderSuccess, updateShipPrice } from '../../redux/slices/orderSlice';
 import { useNavigate } from 'react-router-dom';
+import { PayPalButton } from 'react-paypal-button-v2';
 
 const PaymentPage = () => {
     const [paymentMethod, setPaymentMethod] = useState("tienmat")
+    const [sdkReady, setSdkReady] = useState(false)
     const shipPrice = useSelector((state) => state.order.shippingPrice)
     const [shipValue, setShipvalue] = useState(shipPrice)
     const defaultPrice = useSelector((state) => state.order.itemsPrice)
@@ -38,27 +40,58 @@ const PaymentPage = () => {
         userId = ''
     }
 
+    useEffect(() => {
+        if (!window.paypal) {
+            getClientId()
+        } else {
+            setSdkReady(true)
+        }
+    }, [])
+
+    const getClientId = async () => {
+        const res = await getClientIdService()
+        if (res?.errCode === 0) {
+            const script = document.createElement('script')
+            script.type = 'text/javascript'
+            script.src = `https://www.paypal.com/sdk/js?client-id=${res.data}`
+            script.async = true
+            script.onload = () => {
+                setSdkReady(true)
+            }
+            document.body.appendChild(script)
+        }
+    }
+
+
     const handleOrder = async () => {
         if (orderItemsSelected && userInfo && defaultPrice && totalPrice) {
-            const res = await postCreateOrder({
-                orderItems: orderItemsSelected,
-                paymentMethod: paymentMethod,
-                itemsPrice: defaultPrice,
-                shippingPrice: shipValue,
-                totalPrice: totalPrice + shipValue,
-                fullName: userInfo.name,
-                address: userInfo.address,
-                phone: userInfo.phone,
-                user: userId
-            })
-            if (res?.errCode === 0) {
-                message.success("Đặt hàng thành công!")
-                dispatch(orderSuccess())
-                navigate('/manage-order')
+            if (paymentMethod === "tienmat") {
+                const res = await postCreateOrder({
+                    orderItems: orderItemsSelected,
+                    paymentMethod: paymentMethod,
+                    itemsPrice: defaultPrice,
+                    shippingPrice: shipValue,
+                    totalPrice: totalPrice + shipValue,
+                    fullName: userInfo.name,
+                    address: userInfo.address,
+                    phone: userInfo.phone,
+                    user: userId
+                })
+                if (res?.errCode === 0) {
+                    message.success("Đặt hàng thành công!")
+                    dispatch(orderSuccess())
+                    navigate(`/detail-order/${res?.order?._id}`)
+                }
+                else {
+                    message.error(res?.message)
+                }
             }
-            else {
-                message.error(res?.message)
+            else if (paymentMethod === "momo") {
+                message.info("Chưa làm momo")
             }
+        }
+        else {
+            message.error("Có lỗi xảy ra!")
         }
     }
     const onChangeShip = (e) => {
@@ -69,6 +102,39 @@ const PaymentPage = () => {
     const onChangePay = (e) => {
         setPaymentMethod(e.target.value);
     };
+
+    const paypalButton = () => {
+        return (
+            <PayPalButton
+                amount={(totalPrice + shipValue) / 25000}
+                onSuccess={async (details, data) => {
+                    const res = await postCreateOrder({
+                        orderItems: orderItemsSelected,
+                        paymentMethod: paymentMethod,
+                        itemsPrice: defaultPrice,
+                        shippingPrice: shipValue,
+                        totalPrice: totalPrice + shipValue,
+                        isPaid: true,
+                        fullName: userInfo.name,
+                        address: userInfo.address,
+                        phone: userInfo.phone,
+                        user: userId
+                    })
+                    if (res?.errCode === 0) {
+                        message.success("Đặt hàng thành công!")
+                        dispatch(orderSuccess())
+                        navigate(`/detail-order/${res?.order?._id}`)
+                    }
+                    else {
+                        message.error(res?.message)
+                    }
+                }}
+                onError={() => {
+                    message.error("Thanh toán thất bại")
+                }}
+            />
+        )
+    }
 
     const columns = [
         {
@@ -119,7 +185,7 @@ const PaymentPage = () => {
     ];
 
     const data = orderItemsSelected?.map((item) => ({
-        key: item.productId,
+        key: item.product,
         product: {
             name: item.name,
             image: item.image,
@@ -204,12 +270,27 @@ const PaymentPage = () => {
                     <div className='sticky'>
                         <TotalPriceComponent />
                         <div className='buy-now-button'>
-                            <Button size='large' onClick={() => handleOrder()}
-                                style={{
-                                    width: "100%",
-                                    backgroundColor: "#0b74e5", borderColor: "#0b74e5",
-                                    color: "white"
-                                }}>Đặt hàng</Button>
+                            {paymentMethod === "tienmat" ?
+                                <Button size='large' onClick={() => handleOrder()}
+                                    style={{
+                                        width: "100%",
+                                        backgroundColor: "#0b74e5", borderColor: "#0b74e5",
+                                        color: "white"
+                                    }}>
+                                    Đặt hàng
+                                </Button>
+                                : paymentMethod === 'paypal' && sdkReady ?
+                                    paypalButton()
+                                    :
+                                    <Button size='large'
+                                        style={{
+                                            width: "100%",
+                                            backgroundColor: "#0b74e5", borderColor: "#0b74e5",
+                                            color: "white"
+                                        }}>
+                                        Momo chưa làm
+                                    </Button>
+                            }
                         </div>
                     </div>
                 </div>

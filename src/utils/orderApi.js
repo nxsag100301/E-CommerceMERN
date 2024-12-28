@@ -12,6 +12,10 @@ const getDetailOrder = async (id) => {
     return await axios.get(`/order/detail-order/${id}`)
 }
 
+const getClientIdService = async () => {
+    return await axios.get('/payment/config')
+}
+
 export {
-    postCreateOrder, getOrder, getDetailOrder
+    postCreateOrder, getOrder, getDetailOrder, getClientIdService
 }

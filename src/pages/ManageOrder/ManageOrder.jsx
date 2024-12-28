@@ -40,7 +40,7 @@ const ManageOrder = () => {
                 default:
                     break;
             }
-
+            filteredOrders.sort((a, b) => b.totalPrice - a.totalPrice);
             setOrders(filteredOrders);
         } else {
             console.log(res.message);

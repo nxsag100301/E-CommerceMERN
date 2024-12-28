@@ -10,6 +10,7 @@ const instance = axios.create({
 instance.interceptors.request.use(async function (config) {
   const accessToken = localStorage.getItem('access_token')
   const refreshToken = localStorage.getItem('refresh_token')
+  config.headers.Authorization = `Bearer ${accessToken}`
   let tokenRefreshed = ''
   // Do something before request is sent
   if (accessToken && refreshToken) {
@@ -32,7 +33,6 @@ instance.interceptors.request.use(async function (config) {
       }
     }
   }
-  config.headers.Authorization = `Bearer ${accessToken}`
   return config;
 }, function (error) {
   // Do something with request error
