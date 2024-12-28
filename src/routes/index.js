@@ -1,6 +1,7 @@
 import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
 import AdminPage from "../pages/AdminSide/AdminPage/AdminPage";
 import CartPage from "../pages/CartPage/CartPage";
+import DetailOrder from "../pages/DetailOrder/DetailOrder";
 import DetailProductPage from "../pages/DetailProductPage/DetailProductPage";
 import HomePage from "../pages/HomePage/HomePage";
 import ManageOrder from "../pages/ManageOrder/ManageOrder";
@@ -59,6 +60,11 @@ export const routes = [
     {
         path: '/manage-order',
         page: ManageOrder,
+        isShowHeader: true
+    },
+    {
+        path: '/detail-order/:id',
+        page: DetailOrder,
         isShowHeader: true
     },
     {

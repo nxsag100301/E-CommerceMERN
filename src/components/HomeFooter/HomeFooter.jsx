@@ -19,8 +19,8 @@ const HomeFooter = () => {
                             Ant design
                         </div>
                         <div className='text2'>
-                            Website thương mại điện tử với đầy đủ các chức năng cơ bản:
-                            Thêm, xóa, sửa sản phẩm, người dùng, thanh toán Paypal
+                            Website thương mại điện tử với đầy đủ các chức năng cơ bản: Mua hàng,
+                            thêm, xóa, sửa sản phẩm, người dùng, thanh toán online
                         </div>
                         <div className='social'>
                             <div className='icon' style={{ color: "#0067ff" }} onClick={() => window.open("https://www.facebook.com/nxsag/", "_blank")}>

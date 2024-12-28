@@ -24,12 +24,13 @@ const CardComponent = (props) => {
                             <div className='card-title'>{item.name}</div>
                             <div className='rate-selled'>
                                 <span className='card-rate'>{item.rating} <StarOutlined style={{ fontSize: "14px", color: 'yellow' }} /></span>&nbsp;
-                                <span className='card-selled'> | Đã bán {item.selled || 200}+</span>
+                                <span className='card-selled'> | Đã bán {item.selled || "200+"}</span>
                             </div>
+                            <div style={{ fontSize: "12px", marginBottom: "10px" }}>Số lượng còn lại: {item.countInStock}</div>
                             <div className='price-discount'>
                                 <span className='price'>{item.price.toLocaleString('vi-VN')} &#8363;</span>
                                 <span className='discount'>
-                                    -{item.discount || 10}%
+                                    -{item.discount || 0}%
                                 </span>
                             </div>
                         </Card>

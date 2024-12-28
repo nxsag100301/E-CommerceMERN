@@ -23,6 +23,11 @@ Giỏ hàng:
 ![image](https://github.com/user-attachments/assets/5d95e056-2d1a-4abc-be22-fdee29ae140b)
 Đặt hàng:
 ![image](https://github.com/user-attachments/assets/cb381a87-b66c-43ba-80d0-6032a37703af)
+Quản lý đơn hàng:
+![alt text](image-1.png)
+Chi tiết đơn hàng:
+![alt text](image-2.png)
+![alt text](image-3.png)
 Trang quản lý sản phẩm:
 ![image](https://github.com/user-attachments/assets/00259992-c82c-46d1-b9aa-89d6565ee4d6)
 Chi tiết SP:

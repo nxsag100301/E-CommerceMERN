@@ -8,7 +8,7 @@ import banner12 from '../../assets/image/banner12.jpg'
 import CardComponent from '../../components/CardComponent/CardComponent';
 import NavbarComponent from '../../components/NavbarComponent/NavbarComponent';
 import { Button, Spin } from 'antd';
-import { getAllProduct } from '../../utils/productApi';
+import { getAllProduct, getAllProductInStock } from '../../utils/productApi';
 
 const HomePage = () => {
 
@@ -23,12 +23,12 @@ const HomePage = () => {
 
     const fetchAllProduct = async () => {
         const data = { limit }
-        let res = await getAllProduct(data)
+        let res = await getAllProductInStock(data)
         setIsLoadingProduct(true)
         if (res.errCode === 0) {
             setIsLoadingProduct(false)
-            setListProduct(res?.allProduct)
-            if (res?.allProduct?.length >= limit) {
+            setListProduct(res?.products)
+            if (res?.products?.length >= limit) {
                 setMore(false)
             }
             else {

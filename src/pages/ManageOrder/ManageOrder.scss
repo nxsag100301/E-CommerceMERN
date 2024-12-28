@@ -1,0 +1,23 @@
+.manage-order-container {
+    padding         : 10px 100px;
+    padding-top     : 10px;
+    background-color: #f5f5fa;
+
+    .order-title {
+        font-size    : 19px;
+        margin-bottom: 10px;
+    }
+
+    .manage-order-select {
+        margin-bottom: 10px;
+    }
+
+    .manage-order-main-content {
+        background-color: white;
+        box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
+        border-radius   : 8px;
+        padding         : 20px;
+
+    }
+
+}

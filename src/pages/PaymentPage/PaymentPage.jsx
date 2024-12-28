@@ -6,7 +6,6 @@ import { postCreateOrder } from '../../utils/orderApi';
 import { jwtDecode } from "jwt-decode";
 import TotalPriceComponent from '../../components/TotalPriceComponent/TotalPriceComponent';
 import { Radio, Space } from 'antd';
-import { BsCartX } from 'react-icons/bs';
 import tienmat from '../../assets/image/tienmat.png'
 import momo from '../../assets/image/momo.jpg'
 import paypal from '../../assets/image/paypal.png'
@@ -58,7 +57,7 @@ const PaymentPage = () => {
                 navigate('/manage-order')
             }
             else {
-                message.error("Có lỗi xảy ra, vui lòng thử lại!")
+                message.error(res?.message)
             }
         }
     }
@@ -143,46 +142,31 @@ const PaymentPage = () => {
                             <Radio.Group onChange={onChangeShip} value={shipValue}>
                                 <Space>
                                     <div
-                                        className='delivery-container'
+                                        className={`delivery-container ${shipValue === 10000 ? 'active' : ''}`}
                                         onClick={() => onChangeShip({ target: { value: 10000 } })}
                                     >
-                                        <Radio value={10000}>Giao tiết kiệm (50% giá)</Radio>
+                                        <Radio value={10000}>Giao tiết kiệm</Radio>
                                     </div>
                                     <div
-                                        className='delivery-container'
+                                        className={`delivery-container ${shipValue === 20000 ? 'active' : ''}`}
                                         onClick={() => onChangeShip({ target: { value: 20000 } })}
                                     >
                                         <Radio value={20000}>Giao tiêu chuẩn</Radio>
                                     </div>
                                     <div
-                                        className='delivery-container'
+                                        className={`delivery-container ${shipValue === 30000 ? 'active' : ''}`}
                                         onClick={() => onChangeShip({ target: { value: 30000 } })}
                                     >
                                         <Radio value={30000}>Giao nhanh</Radio>
                                     </div>
                                 </Space>
                             </Radio.Group>
-
                         </div>
                         <div className='product-table'>
                             <Table
                                 pagination={false}
                                 columns={columns}
                                 dataSource={data}
-                                locale={{
-                                    emptyText: (
-                                        <div style={{
-                                            height: "163px",
-                                            fontSize: "20px",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            gap: "10px",
-                                        }}>
-                                            <BsCartX style={{ fontSize: "25px" }} /> Giỏ hàng trống
-                                        </div>
-                                    )
-                                }}
                             />
                         </div>
                     </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IoIosSearch } from 'react-icons/io';
 import { Dropdown } from 'antd';
 import { debounce } from 'lodash';
-import { getAllProduct } from '../../utils/productApi';
+import { getAllProductInStock } from '../../utils/productApi';
 import './SearchBarComponent.scss'
 import { useNavigate } from 'react-router-dom';
 
@@ -25,14 +25,14 @@ const SearchBarComponent = () => {
 
     const fetchFilterProduct = debounce(async () => {
         const data = { limit: 5, currentPage: 1, filterBy: "name", filterValue: filterValue }
-        let res = await getAllProduct(data)
+        let res = await getAllProductInStock(data)
         if (res?.errCode === 0) {
-            setListProduct(res?.allProductFilter?.map(item => ({ ...item, key: item._id })));
+            setListProduct(res?.products?.map(item => ({ ...item, key: item._id })));
         }
         else {
             console.log("Error from server")
         }
-    }, 700)
+    }, 300)
 
 
 

@@ -11,6 +11,17 @@ const getAllProduct = async (data) => {
     });
 }
 
+const getAllProductInStock = async (data) => {
+    return await axios.get('/product/instock', {
+        params: {
+            limit: data.limit,
+            currentPage: data.currentPage,
+            filterBy: data.filterBy,
+            filterValue: data.filterValue
+        },
+    });
+}
+
 const postCreateProduct = async (data) => {
     return await axios.post('/product/create', data)
 }
@@ -29,5 +40,5 @@ const putUpdateProduct = async (data) => {
 
 export {
     getAllProduct, postCreateProduct, deleteProduct,
-    detailProduct, putUpdateProduct
+    detailProduct, putUpdateProduct, getAllProductInStock
 }

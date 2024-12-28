@@ -1,6 +1,6 @@
 .cart-page-container {
     padding         : 20px 100px;
-    background-color: #efefef;
+    background-color: #f5f5fa;
 
     .cart-main-content {
         display: flex;
@@ -9,7 +9,7 @@
 
         .cart-content-left1 {
             width           : 70%;
-            background-color: #efefef;
+            background-color: #f5f5fa;
 
             .cart-content-top {
                 box-shadow      : 0px 4px 6px rgba(0, 0, 0, 0.2);
@@ -29,7 +29,7 @@
 
                     .delivery-container {
                         cursor          : pointer;
-                        border          : 1px solid #1aa7ff;
+                        border          : 1px solid #ccc;
                         min-width       : 200px;
                         min-height      : 60px;
                         border-radius   : 8px;
@@ -37,7 +37,13 @@
                         align-items     : center;
                         justify-content : left;
                         padding-left    : 10px;
-                        background-color: #f0f8ff;
+                        background-color: white;
+                        transition      : background-color 0.3s ease;
+
+                        &.active {
+                            background-color: #f0f8ff;
+                            border          : 1px solid #1aa7ff;
+                        }
                     }
                 }
 

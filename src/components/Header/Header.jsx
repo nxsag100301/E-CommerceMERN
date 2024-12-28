@@ -168,9 +168,9 @@ const Header = ({ style }) => {
                         }
 
                         <div className='border'></div>
-                        <div className='cart'>
+                        <div className='cart' onClick={() => handleNavigateCart()}>
                             <Badge count={+productInCart} size="medium" overflowCount={10}>
-                                <AiOutlineShoppingCart className='icon' onClick={() => handleNavigateCart()} />
+                                <AiOutlineShoppingCart className='icon' />
                             </Badge>
                         </div>
                     </div>

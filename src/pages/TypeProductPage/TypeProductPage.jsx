@@ -4,7 +4,7 @@ import NavbarComponent from '../../components/NavbarComponent/NavbarComponent';
 import CardComponent from '../../components/CardComponent/CardComponent';
 import { Button } from 'antd';
 import { useParams } from 'react-router-dom';
-import { getAllProduct } from '../../utils/productApi';
+import { getAllProduct, getAllProductInStock } from '../../utils/productApi';
 
 const TypeProductPage = () => {
     const [limit, setlimit] = useState(8)
@@ -18,10 +18,10 @@ const TypeProductPage = () => {
 
     const fetchProductByType = async () => {
         const data = { limit, currentPage: 1, filterBy: "type", filterValue: type }
-        const res = await getAllProduct(data)
+        const res = await getAllProductInStock(data)
         if (res?.errCode === 0) {
-            setListProduct(res?.allProductFilter)
-            if (res?.allProductFilter?.length >= limit) {
+            setListProduct(res?.products)
+            if (res?.products?.length >= limit) {
                 setMore(false)
             }
         }
