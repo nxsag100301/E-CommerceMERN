@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { PayPalButton } from 'react-paypal-button-v2';
 
 const PaymentPage = () => {
-    const [paymentMethod, setPaymentMethod] = useState("vnpay")
+    const [paymentMethod, setPaymentMethod] = useState("tienmat")
     const [sdkReady, setSdkReady] = useState(false)
     const shipPrice = useSelector((state) => state.order.shippingPrice)
     const [shipValue, setShipvalue] = useState(shipPrice)
