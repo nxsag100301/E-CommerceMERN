@@ -74,8 +74,12 @@ const DetailOrder = () => {
                         {new Date(detailOrder?.createdAt).toLocaleDateString('vi-VN')}
                     </Descriptions.Item>
                     <Descriptions.Item label="Phương thức thanh toán">
-                        {detailOrder?.paymentMethod === 'tienmat' ? 'Tiền mặt' :
-                            detailOrder?.paymentMethod === "paypal" ? 'Paypal' : "Momo"}
+                        {
+                            detailOrder?.paymentMethod === 'tienmat' ? 'Tiền mặt' :
+                                detailOrder?.paymentMethod === "paypal" ? 'Paypal' :
+                                    detailOrder?.paymentMethod === "vnpay" ? "VNPAY" :
+                                        "Momo"
+                        }
                     </Descriptions.Item>
                     <Descriptions.Item label="Địa chỉ giao hàng">
                         {`${detailOrder?.shippingAddress?.fullName}, ${detailOrder?.shippingAddress?.address}, ${detailOrder?.shippingAddress?.phone}`}

@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Button, message, Table } from 'antd';
 import './PaymentPage.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { getClientIdService, postCreateOrder } from '../../utils/orderApi';
+import { getClientIdService, postCreateOrder, postVNPayOrder } from '../../utils/orderApi';
 import { jwtDecode } from "jwt-decode";
 import TotalPriceComponent from '../../components/TotalPriceComponent/TotalPriceComponent';
 import { Radio, Space } from 'antd';
 import tienmat from '../../assets/image/tienmat.png'
 import momo from '../../assets/image/momo.jpg'
 import paypal from '../../assets/image/paypal.png'
+import vnpay from '../../assets/image/vnpay.png'
 import { orderSuccess, updateShipPrice } from '../../redux/slices/orderSlice';
 import { useNavigate } from 'react-router-dom';
 import { PayPalButton } from 'react-paypal-button-v2';
 
 const PaymentPage = () => {
-    const [paymentMethod, setPaymentMethod] = useState("tienmat")
+    const [paymentMethod, setPaymentMethod] = useState("vnpay")
     const [sdkReady, setSdkReady] = useState(false)
     const shipPrice = useSelector((state) => state.order.shippingPrice)
     const [shipValue, setShipvalue] = useState(shipPrice)
@@ -86,8 +87,17 @@ const PaymentPage = () => {
                     message.error(res?.message)
                 }
             }
-            else if (paymentMethod === "momo") {
-                message.info("Chưa làm momo")
+            else if (paymentMethod === "vnpay") {
+                const data = {
+                    amount: totalPrice + shipValue,
+                    orderDescription: "Thanh toán bằng VNPAY",
+                    bankCode: "",
+                    language: "vn"
+                }
+                const res = await postVNPayOrder(data)
+                if (res.url) {
+                    window.location.href = res.url;
+                }
             }
         }
         else {
@@ -108,6 +118,9 @@ const PaymentPage = () => {
             <PayPalButton
                 amount={(totalPrice + shipValue) / 25000}
                 onSuccess={async (details, data) => {
+                    let utcDate = new Date(details.update_time);
+                    let vietnamOffset = 7 * 60 * 60 * 1000;
+                    let vietnamDate = new Date(utcDate.getTime() + vietnamOffset);
                     const res = await postCreateOrder({
                         orderItems: orderItemsSelected,
                         paymentMethod: paymentMethod,
@@ -115,6 +128,7 @@ const PaymentPage = () => {
                         shippingPrice: shipValue,
                         totalPrice: totalPrice + shipValue,
                         isPaid: true,
+                        paidAt: vietnamDate,
                         fullName: userInfo.name,
                         address: userInfo.address,
                         phone: userInfo.phone,
@@ -249,16 +263,22 @@ const PaymentPage = () => {
                                             Thanh toán khi nhận hàng
                                         </div>
                                     </Radio>
-                                    <Radio value={"momo"}>
+                                    <Radio value={"vnpay"}>
                                         <div className="custom-radio">
-                                            <img alt="momo" src={momo} style={{ height: "32px", width: "32px" }} />
-                                            Ví Momo
+                                            <img alt="vnpay" src={vnpay} style={{ height: "32px", width: "32px" }} />
+                                            VNPAY
                                         </div>
                                     </Radio>
                                     <Radio value={"paypal"}>
                                         <div className="custom-radio">
                                             <img alt="paypal" src={paypal} style={{ height: "32px", width: "32px" }} />
                                             Paypal
+                                        </div>
+                                    </Radio>
+                                    <Radio value={"momo"}>
+                                        <div className="custom-radio">
+                                            <img alt="momo" src={momo} style={{ height: "32px", width: "32px" }} />
+                                            Ví Momo
                                         </div>
                                     </Radio>
                                 </Space>
@@ -270,7 +290,7 @@ const PaymentPage = () => {
                     <div className='sticky'>
                         <TotalPriceComponent />
                         <div className='buy-now-button'>
-                            {paymentMethod === "tienmat" ?
+                            {paymentMethod === "tienmat" || paymentMethod === "vnpay" ?
                                 <Button size='large' onClick={() => handleOrder()}
                                     style={{
                                         width: "100%",

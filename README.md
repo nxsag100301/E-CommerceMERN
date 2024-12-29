@@ -23,6 +23,10 @@ Giỏ hàng:
 ![image](https://github.com/user-attachments/assets/5d95e056-2d1a-4abc-be22-fdee29ae140b)
 Đặt hàng:
 ![alt text](image-4.png)
+Thanh toán VNPAY:
+![alt text](image-6.png)
+![alt text](image-7.png)
+![alt text](image-8.png)
 Thanh toán Paypal:
 ![alt text](image-5.png)
 Quản lý đơn hàng:

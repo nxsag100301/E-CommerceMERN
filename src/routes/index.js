@@ -8,6 +8,7 @@ import ManageOrder from "../pages/ManageOrder/ManageOrder";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import PaymentPage from "../pages/PaymentPage/PaymentPage";
 import ProductPage from "../pages/ProductPage/ProductPage";
+import VnpayReturn from "../pages/ReturnVNPAYPage/ReturnVNPAYPage";
 import TypeProductPage from "../pages/TypeProductPage/TypeProductPage";
 import UserProfilePage from "../pages/UserProfilePage/UserProfilePage";
 
@@ -65,6 +66,11 @@ export const routes = [
     {
         path: '/detail-order/:id',
         page: DetailOrder,
+        isShowHeader: true
+    },
+    {
+        path: '/vnpay_return',
+        page: VnpayReturn,
         isShowHeader: true
     },
     {
